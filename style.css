@@ -1,0 +1,350 @@
+/* ==========================================================================
+   1. 기본 변수 및 리셋 (시니어 가독성 중심)
+   ========================================================================== */
+:root {
+  --primary: #0284c7;       /* 신뢰감을 주는 메인 블루 */
+  --primary-dark: #0369a1;
+  --secondary: #16a34a;     /* 부업/수익 포인트 그린 */
+  --accent: #d97706;        /* 지원금 포인트 오렌지 */
+  --bg-main: #f8fafc;       /* 은은한 연회색 배경 */
+  --card-bg: #ffffff;
+  --text-main: #0f172a;     /* 진한 텍스트로 시인성 확보 */
+  --text-muted: #475569;
+  --border-color: #e2e8f0;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --max-width: 1140px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 18px; /* 시니어 배려 기본 글씨 크기 */
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  word-break: keep-all;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. 헤더 & 스티키 네비게이션
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  z-index: 1000;
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 28px;
+}
+
+.main-nav a {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--primary);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mobile-menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   3. 히어로 비주얼 섹션
+   ========================================================================== */
+.hero-banner {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  padding: 50px 0 60px;
+  text-align: center;
+}
+
+.hero-subtitle {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+.hero-desc {
+  font-size: 1.15rem;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.quick-category {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  background: #ffffff;
+  color: var(--primary-dark);
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.cat-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. 카드 그리드 레이아웃
+   ========================================================================== */
+.cards-section {
+  padding: 50px 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 25px;
+}
+
+.section-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.view-all {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.info-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  background-color: #cbd5e1;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.badge-blue { background-color: var(--primary); }
+.badge-green { background-color: var(--secondary); }
+.badge-orange { background-color: var(--accent); }
+
+.card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.card-title a:hover {
+  color: var(--primary);
+}
+
+.card-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+}
+
+.read-more {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   5. 푸터 & 모바일 반응형 Breakpoints
+   ========================================================================== */
+.site-footer {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: 40px 0;
+  margin-top: 40px;
+  font-size: 0.95rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-info strong {
+  color: #f8fafc;
+  font-size: 1.1rem;
+}
+
+/* 모바일 전용 UI 제어 (768px 이하) */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 15px 20px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr; /* 모바일에서 1열 카드로 정렬 */
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
