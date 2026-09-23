@@ -156,11 +156,24 @@
     </div>
   </footer>
 
-  <!-- 모바일 메뉴 동작 스크립트 -->
+<!-- 모바일 메뉴 동작 스크립트 -->
   <script>
     document.getElementById('menuToggle').addEventListener('click', function() {
       document.getElementById('mainNav').classList.toggle('open');
     });
+  </script>
+
+  <!-- Netlify Identity CMS 로그인 처리 스크립트 -->
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>

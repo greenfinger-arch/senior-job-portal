@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: greenfinger-arch/senior-job # 깃허브 계정/저장소명
+  branch: main # 기본 브랜치명 (master인 경우 master로 변경)
+  base_url: https://black-sun-634d.garcia47stand.workers.dev # 💡 Cloudflare Worker 생성 후 도메인 주소로 교체하세요
+  auth_endpoint: /auth
+
+site_url: https://senior-job-portal.pages.dev/ # 사이트 대표 주소
+display_url: https://senior-job-portal.pages.dev/
+
+media_folder: "images/uploads" # 기사 작성 시 업로드한 이미지가 저장될 깃허브 경로
+public_folder: "/images/uploads" # 웹사이트에서 이미지를 불러올 경로
+
+collections:
+  - name: "posts"
+    label: "기사/콘텐츠"
+    folder: "posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "제목", name: "title", widget: "string" }
+      - { 
+          label: "카테고리", 
+          name: "category", 
+          widget: "select", 
+          options: ["시니어 재취업", "중장년 부업/N잡", "교육/자격증", "정부 지원금"] 
+        }
+      - { label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "대표 이미지", name: "thumbnail", widget: "image", required: false }
+      - { label: "요약문", name: "excerpt", widget: "text" }
+      - { label: "본문 내용", name: "body", widget: "markdown" }
