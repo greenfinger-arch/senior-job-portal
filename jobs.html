@@ -70,25 +70,9 @@
       <p class="page-subtitle">5060 중장년을 위한 맞춤형 일자리 및 재취업 트렌드 모음</p>
     </section>
 
-    <div class="article-grid">
-      <!-- 기사 카드 1 -->
-      <article class="card">
-        <a href="article1.html" class="card-link">
-          <div class="card-image">
-            <img src="https://picsum.photos/600/400?random=1" alt="퇴직 후 1년 내 재취업 성공 전략">
-          </div>
-          <div class="card-content">
-            <span class="badge badge-blue">시니어 재취업</span>
-            <h2 class="card-title">퇴직 후 1년 내 재취업 성공하는 시니어들의 3가지 공통점</h2>
-            <p class="card-excerpt">주요 기업 퇴직 임원 및 전문직 종사자들이 성공적으로 제2의 직업을 찾는 핵심 전략을 분석합니다.</p>
-            <div class="card-meta">
-              <span>2026.03.10</span>
-            </div>
-          </div>
-        </a>
-      </article>
-
-      <!-- 추후 새로운 재취업 기사가 추가되면 이곳에 카드 형태로 계속 배치됩니다 -->
+    <!-- CMS 동적 연동 영역 -->
+    <div class="card-grid" id="articleGrid" data-category="jobs">
+      <p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">기사를 불러오는 중입니다...</p>
     </div>
   </main>
 
@@ -99,7 +83,7 @@
     </div>
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-<script src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

@@ -68,22 +68,9 @@
       <p class="page-subtitle"> 놓치면 안 되는 5060 맞춤형 지원 정책 및 장려금 소식</p>
     </section>
 
-    <div class="article-grid">
-      <article class="card">
-        <a href="article3.html" class="card-link">
-          <div class="card-image">
-            <img src="https://picsum.photos/600/400?random=3" alt="고용장려금 정리">
-          </div>
-          <div class="card-content">
-            <span class="badge badge-orange">정부 지원금</span>
-            <h2 class="card-title">2026년 중장년 적합직무 고용장려금 완벽 정리</h2>
-            <p class="card-excerpt">만 50세 이상 구직자를 채용하는 기업과 재취업자 모두 받을 수 있는 정부 지원 혜택 요약.</p>
-            <div class="card-meta">
-              <span>2026.03.08</span>
-            </div>
-          </div>
-        </a>
-      </article>
+    <!-- CMS 동적 연동 영역 -->
+    <div class="card-grid" id="articleGrid" data-category="welfare">
+      <p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">기사를 불러오는 중입니다...</p>
     </div>
   </main>
 
@@ -93,7 +80,7 @@
     </div>
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-<script src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
