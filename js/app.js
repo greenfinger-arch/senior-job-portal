@@ -1,5 +1,5 @@
 // GitHub 저장소 정보
-const GITHUB_REPO = "greenfinger-arch/senior-job";
+const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
 const GITHUB_BRANCH = "main"; // 또는 master
 
 // 메인 실행 함수
