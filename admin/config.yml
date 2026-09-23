@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: greenfinger-arch/senior-job # 깃허브 계정/저장소명
+  repo: greenfinger-arch/senior-job-portal # 깃허브 계정/저장소명
   branch: main # 기본 브랜치명 (master인 경우 master로 변경)
   base_url: https://black-sun-634d.garcia47stand.workers.dev # 💡 Cloudflare Worker 생성 후 도메인 주소로 교체하세요
   auth_endpoint: /auth
