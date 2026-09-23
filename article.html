@@ -18,7 +18,7 @@
       padding: 0;
     }
 
-    /* 포럼/뉴스 매거진 스타일의 차분한 레이아웃 */
+    /* 포럼/뉴스 매거진 스타일 레이아웃 */
     .article-container { 
       max-width: 820px; 
       margin: 40px auto; 
@@ -74,7 +74,7 @@
       border: 1px solid #e2e8f0;
     }
 
-    /* 마크다운 본문 렌더링 스타일 (차분한 정통 아티클 서식) */
+    /* 마크다운 본문 렌더링 스타일 */
     .article-body { 
       font-size: 1.15rem; 
       line-height: 1.9; 
@@ -82,7 +82,7 @@
       word-break: keep-all;
     }
 
-    /* ## 소제목 정상 렌더링 스타일 */
+    /* ## 소제목 스타일 */
     .article-body h2 { 
       font-size: 1.55rem; 
       color: #0f172a;
@@ -93,7 +93,7 @@
       letter-spacing: -0.01em;
     }
 
-    /* ### 소제목 정상 렌더링 스타일 */
+    /* ### 소제목 스타일 */
     .article-body h3 { 
       font-size: 1.3rem; 
       color: #1e293b;
@@ -107,7 +107,7 @@
       margin-bottom: 22px;
     }
 
-    /* **볼드** 강조 문구 */
+    /* **볼드** 강조 */
     .article-body strong {
       color: #0f172a;
       font-weight: 700;
@@ -135,7 +135,7 @@
       margin: 0;
     }
 
-    /* 목록 스타일 (ul, ol) */
+    /* 리스트 스타일 */
     .article-body ul, .article-body ol {
       margin: 20px 0 28px 20px;
       padding-left: 10px;
@@ -146,7 +146,7 @@
       line-height: 1.8;
     }
 
-    /* 표(Table) 정상 렌더링 스타일 */
+    /* 표(Table) 스타일 */
     .article-body table { 
       width: 100%; 
       border-collapse: collapse; 
@@ -244,7 +244,7 @@
     const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
     const GITHUB_BRANCH = "main";
 
-    // Marked 기본 옵션 설정
+    // Marked 마크다운 파서 옵션 설정
     marked.setOptions({
       gfm: true,
       breaks: true
@@ -280,18 +280,8 @@
           body = parts.slice(2).join("---").trim();
         }
 
-        // [강력 개행 복원] 줄바꿈이 한 줄로 압축된 경우에도 마크다운 문법을 완벽 분리
-        let formattedBody = body
-          .replace(/\r\n/g, "\n")
-          // 1. 소제목(##, ###) 및 인용구(>), 구분선(---) 분리
-          .replace(/(^|[^\n])\s*(#{2,3}|>|---)\s+/g, "$1\n\n$2 ")
-          // 2. 마크다운 표 시작(| 구분 |) 및 표 줄바꿈 분리
-          .replace(/(^|[^\n])\s*(\|[^\n]+\|)/g, "$1\n\n$2")
-          // 3. 리스트 항목(* 내용, - 내용) 분리
-          .replace(/(^|[^\n])\s*([\*\-]\s+\*\*)/g, "$1\n$2");
-
-        // 마크다운 파싱 실행
-        const htmlBody = marked.parse(formattedBody);
+        // [정석 파싱] 정규식 전처리 없이 표준 marked.parse로 본문 변환
+        const htmlBody = marked.parse(body);
 
         contentDiv.innerHTML = `
           <article class="article-header">
