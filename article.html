@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기사 상세 보기 - 시니어내일포럼</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 기사 본문 전용 스타일링 */
+    .article-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    .article-header { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+    .article-category { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 12px; }
+    .article-title { font-size: 2rem; line-height: 1.4; margin-bottom: 15px; color: #222; }
+    .article-date { color: #666; font-size: 14px; }
+    .article-thumb { width: 100%; max-height: 450px; object-fit: cover; border-radius: 8px; margin-bottom: 30px; }
+    .article-body { font-size: 1.1rem; line-height: 1.8; color: #333; }
+    .article-body h2 { font-size: 1.5rem; border-left: 4px solid #10b981; padding-left: 10px; margin: 30px 0 15px; }
+    .article-body h3 { font-size: 1.25rem; margin: 20px 0 10px; }
+    .article-body blockquote { background: #f3f4f6; border-left: 4px solid #3b82f6; padding: 15px; margin: 20px 0; border-radius: 4px; }
+    .article-body table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .article-body th, .article-body td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    .article-body th { background: #f8fafc; }
+    .article-body img { max-width: 100%; height: auto; border-radius: 6px; }
+    .back-btn { display: inline-block; margin-top: 40px; padding: 10px 20px; background: #374151; color: #fff; text-decoration: none; border-radius: 6px; }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 (기존 공통 네비게이션 사용) -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">시니어내일포럼</a>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <nav class="nav" id="mainNav">
+        <ul>
+          <li><a href="jobs.html">시니어 재취업</a></li>
+          <li><a href="side-hustle.html">중장년 부업/N잡</a></li>
+          <li><a href="education.html">교육/자격증</a></li>
+          <li><a href="welfare.html">정부 지원금</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 본문 컨테이너 -->
+  <main class="article-container">
+    <div id="articleContent">
+      <p style="text-align: center; padding: 50px 0;">기사 내용을 불러오는 중입니다...</p>
+    </div>
+    <a href="javascript:history.back()" class="back-btn">&larr; 목록으로 돌아가기</a>
+  </main>
+
+  <!-- 마크다운 변환 및 YAML 파서 라이브러리 -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
+    const GITHUB_BRANCH = "main";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      // URL에서 slug 파라미터 가져오기 (?slug=2026-09-23-xxxx)
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get("slug");
+      const contentDiv = document.getElementById("articleContent");
+
+      if (!slug) {
+        contentDiv.innerHTML = "<p>존재하지 않는 기사입니다.</p>";
+        return;
+      }
+
+      try {
+        const rawUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/posts/${slug}.md`;
+        const res = await fetch(rawUrl);
+
+        if (!res.ok) {
+          contentDiv.innerHTML = "<p>기사를 찾을 수 없습니다.</p>";
+          return;
+        }
+
+        const text = await res.text();
+        const parts = text.split(/^---$/m);
+        
+        let frontmatter = {};
+        let body = text;
+
+        if (parts.length >= 3) {
+          frontmatter = jsyaml.load(parts[1]);
+          body = parts.slice(2).join("---").trim();
+        }
+
+        // 마크다운 본문을 HTML로 변환
+        const htmlBody = marked.parse(body);
+
+        contentDiv.innerHTML = `
+          <article class="article-header">
+            <span class="article-category badge-orange">${frontmatter.category || '기타'}</span>
+            <h1 class="article-title">${frontmatter.title || '제목 없음'}</h1>
+            <div class="article-date">발행일: ${frontmatter.date ? String(frontmatter.date).substring(0, 10) : ''}</div>
+          </article>
+          ${frontmatter.thumbnail ? `<img src="${frontmatter.thumbnail}" class="article-thumb" alt="대표 이미지">` : ''}
+          <div class="article-body">
+            ${htmlBody}
+          </div>
+        `;
+      } catch (err) {
+        console.error(err);
+        contentDiv.innerHTML = "<p>기사를 로딩하는 중 오류가 발생했습니다.</p>";
+      }
+    });
+
+    // 모바일 메뉴 토글
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      document.getElementById('mainNav').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
