@@ -244,7 +244,7 @@
     const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
     const GITHUB_BRANCH = "main";
 
-    // Marked 옵션 설정 (줄바꿈 및 표 문법 강제 지원)
+    // Marked 옵션 설정 (GFM 표 및 줄바꿈 지원)
     marked.setOptions({
       gfm: true,
       breaks: true
@@ -277,12 +277,17 @@
 
         if (parts.length >= 3) {
           frontmatter = jsyaml.load(parts[1]);
-          // 파싱 중 윈도우/맥 줄바꿈 차이 보정
           body = parts.slice(2).join("---").trim();
         }
 
-        // 마크다운을 정식 HTML로 파싱
-        const htmlBody = marked.parse(body);
+        // [핵심 보완] Decap CMS가 빈 줄을 삭제하여 저장하더라도 
+        // 마크다운 파서가 정상 인식할 수 있도록 요소 직전에 빈 줄(\n\n)을 전처리로 강제 삽입합니다.
+        let formattedBody = body
+          .replace(/([^\n])\n(##|###|>|---)/g, '$1\n\n$2') // 소제목(##, ###), 인용구(>), 구분선(---) 직전 빈 줄 생성
+          .replace(/([^\n])\n(\|[^\n]+\|)/g, '$1\n\n$2');  // 표(| 구분 |) 시작 직전 빈 줄 생성
+
+        // 마크다운을 정식 HTML로 변환
+        const htmlBody = marked.parse(formattedBody);
 
         contentDiv.innerHTML = `
           <article class="article-header">
