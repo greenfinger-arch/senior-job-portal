@@ -163,17 +163,10 @@
     });
   </script>
 
-  <!-- Netlify Identity CMS 로그인 처리 스크립트 -->
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
+  <!-- YAML 파서 (마크다운 파싱용) -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  
+  <!-- CMS 글 데이터를 자동으로 불러오는 메인 자바스크립트 -->
+  <script src="js/app.js"></script>
 </body>
 </html>
