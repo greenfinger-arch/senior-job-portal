@@ -244,7 +244,7 @@
     const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
     const GITHUB_BRANCH = "main";
 
-    // Marked 옵션 설정 (GFM 표 및 줄바꿈 지원)
+    // Marked 기본 옵션 설정
     marked.setOptions({
       gfm: true,
       breaks: true
@@ -280,13 +280,17 @@
           body = parts.slice(2).join("---").trim();
         }
 
-        // [핵심 보완] Decap CMS가 빈 줄을 삭제하여 저장하더라도 
-        // 마크다운 파서가 정상 인식할 수 있도록 요소 직전에 빈 줄(\n\n)을 전처리로 강제 삽입합니다.
+        // [강력 개행 복원] 줄바꿈이 한 줄로 압축된 경우에도 마크다운 문법을 완벽 분리
         let formattedBody = body
-          .replace(/([^\n])\n(##|###|>|---)/g, '$1\n\n$2') // 소제목(##, ###), 인용구(>), 구분선(---) 직전 빈 줄 생성
-          .replace(/([^\n])\n(\|[^\n]+\|)/g, '$1\n\n$2');  // 표(| 구분 |) 시작 직전 빈 줄 생성
+          .replace(/\r\n/g, "\n")
+          // 1. 소제목(##, ###) 및 인용구(>), 구분선(---) 분리
+          .replace(/(^|[^\n])\s*(#{2,3}|>|---)\s+/g, "$1\n\n$2 ")
+          // 2. 마크다운 표 시작(| 구분 |) 및 표 줄바꿈 분리
+          .replace(/(^|[^\n])\s*(\|[^\n]+\|)/g, "$1\n\n$2")
+          // 3. 리스트 항목(* 내용, - 내용) 분리
+          .replace(/(^|[^\n])\s*([\*\-]\s+\*\*)/g, "$1\n$2");
 
-        // 마크다운을 정식 HTML로 변환
+        // 마크다운 파싱 실행
         const htmlBody = marked.parse(formattedBody);
 
         contentDiv.innerHTML = `
