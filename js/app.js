@@ -1,76 +1,93 @@
-// GitHub 저장소 정보
 const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
-const GITHUB_BRANCH = "main"; // 또는 master
+const GITHUB_BRANCH = "main";
 
-// 메인 실행 함수
 document.addEventListener("DOMContentLoaded", async () => {
   const cardGrid = document.querySelector(".card-grid");
   if (!cardGrid) return;
 
-  // 현재 페이지의 카테고리 확인 (body 태그의 data-category 속성 또는 파일명 기준)
   const currentCategory = document.body.dataset.category || "all";
 
   try {
-    // 1. GitHub API로 posts 폴더 내 파일 목록 조회
-    const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`);
+    // GitHub Raw Content CDN을 통한 안전한 파일 목록 및 내용 조회
+    const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`;
+    const response = await fetch(apiUrl);
+    
     if (!response.ok) {
-      console.log("작성된 기사가 아직 없거나 posts 폴더를 찾을 수 없습니다.");
+      console.warn("posts 폴더를 읽을 수 없거나 아직 기사가 없습니다. 상태코드:", response.status);
       return;
     }
 
     const files = await response.json();
+    if (!Array.isArray(files)) return;
+
     const posts = [];
 
-    // 2. 각 마크다운 파일 내용 읽어오기
     for (const file of files) {
       if (file.name.endsWith(".md")) {
-        const fileRes = await fetch(file.download_url);
-        const text = await fileRes.text();
-        const post = parseMarkdown(text, file.name);
-        if (post) posts.push(post);
+        // raw.githubusercontent.com 주소를 직접 이용하여 CORS 및 보안 차단 회피
+        const rawUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/posts/${file.name}`;
+        const fileRes = await fetch(rawUrl);
+        
+        if (fileRes.ok) {
+          const text = await fileRes.text();
+          const post = parseMarkdown(text, file.name);
+          if (post) posts.push(post);
+        }
       }
     }
 
-    // 3. 최신 발행일 순으로 정렬
+    // 최신 날짜순 정렬
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // 4. 카테고리 필터링 (전체보기가 아닌 경우)
+    // 카테고리 필터링
     const filteredPosts = currentCategory === "all" 
       ? posts 
       : posts.filter(post => post.category === currentCategory);
 
-    // 5. 기사 카드가 존재하면 그리드 화면 갱신
     if (filteredPosts.length > 0) {
       cardGrid.innerHTML = filteredPosts.map(renderCardHTML).join("");
+    } else {
+      console.log("표시할 기사 데이터가 없습니다.");
     }
   } catch (error) {
-    console.error("기사 목록을 불러오는 중 오류 발생:", error);
+    console.error("기사 데이터 로딩 에러:", error);
   }
 });
 
-// Frontmatter YAML과 Markdown 파싱 함수
+// 유연하게 개선된 마크다운 파싱 함수
 function parseMarkdown(text, filename) {
   try {
-    const parts = text.split("---");
-    if (parts.length < 3) return null;
+    // --- 구분자로 split
+    const parts = text.split(/^---$/m);
     
+    if (parts.length < 3) {
+      // 대안 파싱 (줄바꿈 문자가 \r\n 인 경우 대응)
+      const altParts = text.split("---");
+      if (altParts.length < 3) return null;
+      return buildPostObject(jsyaml.load(altParts[1]), altParts.slice(2).join("---"), filename);
+    }
+
     const frontmatter = jsyaml.load(parts[1]);
     const body = parts.slice(2).join("---").trim();
-
-    return {
-      title: frontmatter.title || "제목 없음",
-      category: frontmatter.category || "기타",
-      date: frontmatter.date ? frontmatter.date.substring(0, 10) : "",
-      thumbnail: frontmatter.thumbnail || "https://picsum.photos/600/380?random=1",
-      excerpt: frontmatter.excerpt || body.substring(0, 80) + "...",
-      slug: filename.replace(".md", "")
-    };
+    return buildPostObject(frontmatter, body, filename);
   } catch (e) {
+    console.error("마크다운 파싱 실패:", filename, e);
     return null;
   }
 }
 
-// 카테고리별 배지 색상 지정 함수
+function buildPostObject(frontmatter, body, filename) {
+  if (!frontmatter) return null;
+  return {
+    title: frontmatter.title || "제목 없음",
+    category: frontmatter.category || "기타",
+    date: frontmatter.date ? String(frontmatter.date).substring(0, 10) : "",
+    thumbnail: frontmatter.thumbnail || "https://picsum.photos/600/380?random=1",
+    excerpt: frontmatter.excerpt || body.replace(/[#*`>-]/g, "").substring(0, 80) + "...",
+    slug: filename.replace(".md", "")
+  };
+}
+
 function getBadgeClass(category) {
   switch (category) {
     case "시니어 재취업": return "badge-blue";
@@ -81,7 +98,6 @@ function getBadgeClass(category) {
   }
 }
 
-// HTML 카드 템플릿 생성 함수
 function renderCardHTML(post) {
   const badgeClass = getBadgeClass(post.category);
   
