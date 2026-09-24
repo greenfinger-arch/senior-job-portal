@@ -275,7 +275,7 @@
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     }
 
-    // 📌 2. 동적 OG 메타 태그 & Meta Description 제어 (카카오톡/SNS 공유 및 SEO 극대화)
+    // 📌 2. 동적 OG 메타 태그 & Meta Description 제어
     function updateMetaTags(frontmatter, articleUrl) {
       const description = frontmatter.excerpt || frontmatter.title || '시니어 재취업 및 중장년 정보 포럼';
       const image = frontmatter.thumbnail || `${window.location.origin}/images/default-og.png`;
@@ -308,9 +308,9 @@
       });
     }
 
-    // 📌 3. 예상 읽기 시간(Reading Time) 계산 함수
+    // 📌 3. 예상 읽기 시간 계산 함수
     function calculateReadingTime(text) {
-      const wordsPerMinute = 200; // 한국어 기준 분당 평균 읽기 단어/음절 수
+      const wordsPerMinute = 200;
       const cleanText = text.replace(/<[^>]*>?/gm, '');
       const minutes = Math.ceil(cleanText.length / wordsPerMinute);
       return minutes < 1 ? 1 : minutes;
@@ -327,7 +327,6 @@
       }
 
       try {
-        // 📌 4. 클라이언트 캐싱 (sessionStorage 활용으로 로딩 속도 획기적 개선)
         const cacheKey = `article_${slug}`;
         let text = sessionStorage.getItem(cacheKey);
 
@@ -341,7 +340,6 @@
           }
 
           text = await res.text();
-          sessionStorage.setItem(cacheKey, text); // 캐시에 저장
         }
 
         const parts = text.split(/^---$/m);
@@ -353,24 +351,55 @@
           body = parts.slice(2).join("---").trim();
         }
 
-        // 📌 5. 마크다운 변환 및 정제
+        // 📌 4. [신규 추가] 예약 발행 판별 로직
+        if (frontmatter.date) {
+          const publishDate = new Date(frontmatter.date);
+          const now = new Date();
+
+          // 아직 설정된 발행 일시가 지나지 않은 경우
+          if (publishDate > now) {
+            sessionStorage.removeItem(cacheKey); // 공개 전 기사가 캐시에 남지 않도록 삭제
+
+            const formattedPublishDate = publishDate.toLocaleString('ko-KR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+
+            contentDiv.innerHTML = `
+              <div style="text-align: center; padding: 80px 20px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+                <p style="font-size: 2.5rem; margin-bottom: 10px;">⏳</p>
+                <h2 style="font-size: 1.4rem; color: #0f172a; margin-bottom: 12px; font-weight: 700;">예약 발행 예정 기사입니다</h2>
+                <p style="color: #64748b; font-size: 1rem; margin-bottom: 0;">
+                  본 기사는 <strong>${formattedPublishDate}</strong>에 공개될 예정입니다.
+                </p>
+              </div>
+            `;
+            return; // 예약 기사일 경우 이하 렌더링 및 SEO 스크립트 실행 중단
+          }
+        }
+
+        // 정상 공개 기사만 캐시에 저장
+        sessionStorage.setItem(cacheKey, text);
+
+        // 📌 5. 마크다운 변환 및 이미지 최적화
         let htmlBody = typeof marked.parse === "function" ? marked.parse(body) : marked(body);
         htmlBody = cleanMarkdownFormatting(htmlBody);
-
-        // 📌 6. 이미지 성능 최적화 (Lazy Loading & Alt 태그 자동 적용)
         htmlBody = htmlBody.replace(/<img /g, `<img loading="lazy" alt="${frontmatter.title || '기사 이미지'}" `);
 
-        // 📌 7. Title 및 Meta 태그 업데이트
+        // 📌 6. Title 및 Meta 태그 업데이트
         const articleUrl = window.location.href;
         if (frontmatter.title) {
           document.title = `${frontmatter.title} - 시니어내일포럼`;
         }
         updateMetaTags(frontmatter, articleUrl);
 
-        // 📌 8. 예상 읽기 시간 측정
+        // 📌 7. 예상 읽기 시간 측정
         const readingTime = calculateReadingTime(body);
 
-        // 📌 9. 본문 화면 렌더링
+        // 📌 8. 본문 화면 렌더링
         contentDiv.innerHTML = `
           <article class="article-header">
             <span class="article-category">${frontmatter.category || '기타'}</span>
@@ -389,7 +418,7 @@
           </div>
         `;
 
-        // 📌 10. 동적 JSON-LD 스키마 마크업 작성 (SEO & BreadcrumbList)
+        // 📌 9. 동적 JSON-LD 스키마 마크업 작성 (SEO & BreadcrumbList)
         const jsonLdData = {
           "@context": "https://schema.org",
           "@graph": [
@@ -442,7 +471,7 @@
       }
     });
 
-    // 📌 11. 스크롤 진행바 작동 로직
+    // 📌 10. 스크롤 진행바 작동 로직
     window.addEventListener("scroll", () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;

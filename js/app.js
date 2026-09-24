@@ -39,6 +39,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+    // 📌 현재 시스템 시각 추출 (예약 발행 비교용)
+    const now = new Date();
+
     // 2. 각 마크다운 파일의 Frontmatter(YAML Header) 읽어오기
     const articlePromises = mdFiles.map(async (file) => {
       const rawRes = await fetch(file.download_url);
@@ -59,21 +62,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         category: categoryName,
         categoryKey: metadata.categoryKey || CATEGORY_MAP[categoryName] || '',
         date: metadata.date ? String(metadata.date).substring(0, 10) : '',
+        rawDate: metadata.date ? new Date(metadata.date) : new Date(0), // 📌 예약 판별 및 정렬용 Date 객체
         summary: metadata.excerpt || metadata.summary || metadata.description || '',
         thumbnail: metadata.thumbnail || 'https://picsum.photos/600/380',
-        isPillar: metadata.is_pillar === true // 📌 config.yml의 is_pillar 값 읽기
+        isPillar: metadata.is_pillar === true // 📌 기둥 기사 여부
       };
     });
 
     const articles = await Promise.all(articlePromises);
 
+    // 📌 [신규 추가] 2-1. 예약 발행 필터링
+    // 설정된 date가 현재 시각보다 작거나 같은(이미 지난) 공개 기사만 남깁니다.
+    const publishedArticles = articles.filter(item => item.rawDate <= now);
+
     // 날짜 기준 내림차순 정렬 (최신 글이 위로)
-    articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    publishedArticles.sort((a, b) => b.rawDate - a.rawDate);
 
     // 3. 현재 페이지의 카테고리와 일치하는 기사만 필터링 (all이면 전체)
     const filteredArticles = (currentCategory && currentCategory !== 'all')
-      ? articles.filter(item => item.categoryKey === currentCategory || item.category === currentCategory)
-      : articles;
+      ? publishedArticles.filter(item => item.categoryKey === currentCategory || item.category === currentCategory)
+      : publishedArticles;
 
     if (filteredArticles.length === 0) {
       grid.innerHTML = '<p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">등록된 기사가 곧 업데이트될 예정입니다.</p>';
