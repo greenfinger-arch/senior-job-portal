@@ -280,6 +280,11 @@
           body = parts.slice(2).join("---").trim();
         }
 
+        // 📌 [추가] 따옴표 안쪽에 위치한 마크다운 기호(**) 전처리 보정
+let cleanedBody = body
+  .replace(/"\*\*(.*?)\*\*"/g, '**"$1"**')  // " **문구** " -> ** "문구" **
+  .replace(/'\*\*(.*?)\*\*'/g, "**'$1'**"); // ' **문구** ' -> ** '문구' **
+
         // 1. Marked v4+ 최신 API 호환 처리
         let htmlBody = "";
         if (typeof marked.parse === "function") {
