@@ -244,11 +244,26 @@
     const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
     const GITHUB_BRANCH = "main";
 
-    // Marked 옵션 설정 (breaks: true로 엔터/줄바꿈 유지)
     marked.setOptions({
       gfm: true,
       breaks: true
     });
+
+    // 📌 강력한 마크다운 기호 정제 함수
+    function cleanMarkdownFormatting(text) {
+      if (!text) return "";
+      
+      // 1. 따옴표/이탈릭 기호와 복합 연관된 ** 문구 완전 정제
+      return text
+        // "*\"**문구**\"*" 형태
+        .replace(/\*\s*["'“‘]\s*\*\*(.*?)\*\*\s*["'”’]\s*\*/g, '<em>"$1"</em>')
+        // "\"**문구**\"" 또는 '"**문구**"'
+        .replace(/(["'“‘])\s*\*\*(.*?)\*\*\s*(["'”’])/g, '$1<strong>$2</strong>$3')
+        // "**\"문구\"**"
+        .replace(/\*\*\s*(["'“‘].*?["'”’])\s*\*\*/g, '<strong>$1</strong>')
+        // 남은 모든 단독 **문구** 보정
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    }
 
     document.addEventListener("DOMContentLoaded", async () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -280,29 +295,18 @@
           body = parts.slice(2).join("---").trim();
         }
 
-        // 📌 [전처리 보정] 따옴표(일반/스마트 따옴표) 안쪽의 마크다운 강조(**) 보정
-        let cleanedBody = body
-          .replace(/"\*\*(.*?)\*\*"/g, '**"$1"**')
-          .replace(/'\*\*(.*?)\*\*'/g, "**'$1'**")
-          .replace(/“\*\*(.*?)\*\*”/g, '**“$1”**')
-          .replace(/‘\*\*(.*?)\*\*’/g, "**‘$1’**");
+        // 1. 마크다운 변환
+        let htmlBody = typeof marked.parse === "function" ? marked.parse(body) : marked(body);
 
-        // 1. Marked v4+ 최신 API 호환 처리 (보정된 cleanedBody 전달)
-        let htmlBody = "";
-        if (typeof marked.parse === "function") {
-          htmlBody = marked.parse(cleanedBody);
-        } else if (typeof marked === "function") {
-          htmlBody = marked(cleanedBody);
-        } else {
-          htmlBody = cleanedBody;
-        }
+        // 2. 📌 렌더링 후 변환 실패하여 문자로 남아있는 ** 기호 최종 정제
+        htmlBody = cleanMarkdownFormatting(htmlBody);
 
-        // 2. 동적 SEO 메타 태그 및 탭 제목 업데이트
+        // SEO 메타 및 제목 업데이트
         if (frontmatter.title) {
           document.title = `${frontmatter.title} - 시니어내일포럼`;
         }
 
-        // 3. 본문 및 구조 HTML 렌더링
+        // 본문 렌더링
         contentDiv.innerHTML = `
           <article class="article-header">
             <span class="article-category">${frontmatter.category || '기타'}</span>
@@ -319,7 +323,7 @@
           </div>
         `;
 
-        // 4. 동적 JSON-LD 구조화 데이터 삽입 (SEO 및 BreadcrumbList 적용)
+        // JSON-LD 구조화 데이터
         const articleUrl = window.location.href;
         const jsonLdData = {
           "@context": "https://schema.org",
