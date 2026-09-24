@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const grid = document.getElementById('articleGrid');
+  const pillarArea = document.getElementById('pillarArea'); // 📌 기둥 기사 영역
   if (!grid) return;
 
   const currentCategory = grid.dataset.category; // 예: "jobs", "side-hustle", "education", "welfare", "all"
@@ -52,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const slug = file.name.replace('.md', '');
       const categoryName = metadata.category || '기타';
       
-      // Decap CMS의 excerpt, summary, description을 모두 수집할 수 있도록 호환 처리
       return {
         slug: slug,
         title: metadata.title || slug,
@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         categoryKey: metadata.categoryKey || CATEGORY_MAP[categoryName] || '',
         date: metadata.date ? String(metadata.date).substring(0, 10) : '',
         summary: metadata.excerpt || metadata.summary || metadata.description || '',
-        thumbnail: metadata.thumbnail || 'https://picsum.photos/600/380'
+        thumbnail: metadata.thumbnail || 'https://picsum.photos/600/380',
+        isPillar: metadata.is_pillar === true // 📌 config.yml의 is_pillar 값 읽기
       };
     });
 
@@ -76,11 +77,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (filteredArticles.length === 0) {
       grid.innerHTML = '<p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">등록된 기사가 곧 업데이트될 예정입니다.</p>';
+      if (pillarArea) pillarArea.innerHTML = '';
       return;
     }
 
-    // 4. 동적으로 카드 렌더링 (article.html?slug=파일명 구조로 자동 연결)
-    grid.innerHTML = filteredArticles.map(article => `
+    // 4. 📌 기둥 기사(isPillar: true)와 일반 기사 분리
+    const pillarArticle = filteredArticles.find(item => item.isPillar === true);
+    const regularArticles = filteredArticles.filter(item => item !== pillarArticle);
+
+    // 5. 📌 기둥 기사 상단 렌더링 (is_pillar 기사가 있고, pillarArea 요소가 존재할 경우)
+    if (pillarArticle && pillarArea) {
+      pillarArea.innerHTML = `
+        <article class="info-card pillar-card" style="margin-bottom: 30px; border: 2px solid #2b6cb0; background: #f8fafc;">
+          <div class="card-image">
+            <span class="badge badge-blue" style="background-color: #2b6cb0;">📌 필독 대표 가이드</span>
+            <img src="${pillarArticle.thumbnail}" alt="${pillarArticle.title}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <h2 class="card-title" style="font-size: 1.4rem; font-weight: bold;">
+              <a href="article.html?slug=${pillarArticle.slug}">${pillarArticle.title}</a>
+            </h2>
+            <p class="card-text">${pillarArticle.summary}</p>
+            <div class="card-meta">
+              <span>${pillarArticle.date}</span>
+              <a href="article.html?slug=${pillarArticle.slug}" class="read-more" style="font-weight: bold;">전체 가이드 읽기 &rarr;</a>
+            </div>
+          </div>
+        </article>
+      `;
+    } else if (pillarArea) {
+      pillarArea.innerHTML = ''; // 기둥 기사가 없으면 영역 비움
+    }
+
+    // 6. 하단 일반 카드 목록 렌더링
+    grid.innerHTML = regularArticles.map(article => `
       <article class="info-card">
         <div class="card-image">
           <span class="badge badge-blue">${article.category}</span>

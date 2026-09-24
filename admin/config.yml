@@ -25,6 +25,14 @@ collections:
           widget: "select", 
           options: ["시니어 재취업", "중장년 부업/N잡", "교육/자격증", "정부 지원금"] 
         }
+      # 👇 [추가된 필드] 기둥 기사 설정 (기본값: false)
+      - { 
+          label: "📌 카테고리 기둥 기사(Pillar Content)로 고정", 
+          name: "is_pillar", 
+          widget: "boolean", 
+          default: false, 
+          required: false 
+        }
       - { label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "대표 이미지", name: "thumbnail", widget: "image", required: false }
       - { label: "요약문", name: "excerpt", widget: "text" }
