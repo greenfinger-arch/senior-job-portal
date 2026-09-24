@@ -244,7 +244,7 @@
     const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
     const GITHUB_BRANCH = "main";
 
-    // Marked 마크다운 파서 옵션 설정
+    // Marked 옵션 설정 (breaks: true로 엔터/줄바꿈 유지)
     marked.setOptions({
       gfm: true,
       breaks: true
@@ -280,9 +280,22 @@
           body = parts.slice(2).join("---").trim();
         }
 
-        // [정석 파싱] 정규식 전처리 없이 표준 marked.parse로 본문 변환
-        const htmlBody = marked.parse(body);
+        // 1. Marked v4+ 최신 API 호환 처리
+        let htmlBody = "";
+        if (typeof marked.parse === "function") {
+          htmlBody = marked.parse(body);
+        } else if (typeof marked === "function") {
+          htmlBody = marked(body);
+        } else {
+          htmlBody = body;
+        }
 
+        // 2. 동적 SEO 메타 태그 및 탭 제목 업데이트
+        if (frontmatter.title) {
+          document.title = `${frontmatter.title} - 시니어내일포럼`;
+        }
+
+        // 3. 본문 및 구조 HTML 렌더링
         contentDiv.innerHTML = `
           <article class="article-header">
             <span class="article-category">${frontmatter.category || '기타'}</span>
@@ -293,11 +306,60 @@
               <span>시니어내일포럼 편집국</span>
             </div>
           </article>
-          ${frontmatter.thumbnail ? `<img src="${frontmatter.thumbnail}" class="article-thumb" alt="대표 이미지">` : ''}
+          ${frontmatter.thumbnail ? `<img src="${frontmatter.thumbnail}" class="article-thumb" alt="${frontmatter.title || '대표 이미지'}">` : ''}
           <div class="article-body">
             ${htmlBody}
           </div>
         `;
+
+        // 4. 동적 JSON-LD 구조화 데이터 삽입 (SEO 및 BreadcrumbList 적용)
+        const articleUrl = window.location.href;
+        const jsonLdData = {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "NewsArticle",
+              "headline": frontmatter.title || '',
+              "description": frontmatter.excerpt || '',
+              "image": frontmatter.thumbnail ? [frontmatter.thumbnail] : [],
+              "datePublished": frontmatter.date ? String(frontmatter.date).substring(0, 10) : '',
+              "author": {
+                "@type": "Organization",
+                "name": "시니어내일포럼"
+              }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${articleUrl}#breadcrumb`,
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "홈",
+                  "item": `${window.location.origin}/index.html`
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": frontmatter.category || "카테고리",
+                  "item": `${window.location.origin}/jobs.html`
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": frontmatter.title || "기사 상세",
+                  "item": articleUrl
+                }
+              ]
+            }
+          ]
+        };
+
+        const scriptTag = document.createElement("script");
+        scriptTag.type = "application/ld+json";
+        scriptTag.text = JSON.stringify(jsonLdData);
+        document.head.appendChild(scriptTag);
+
       } catch (err) {
         console.error(err);
         contentDiv.innerHTML = "<p style='text-align:center;'>기사를 로딩하는 중 오류가 발생했습니다.</p>";
