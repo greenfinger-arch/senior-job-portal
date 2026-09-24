@@ -280,19 +280,21 @@
           body = parts.slice(2).join("---").trim();
         }
 
-        // 📌 [추가] 따옴표 안쪽에 위치한 마크다운 기호(**) 전처리 보정
-let cleanedBody = body
-  .replace(/"\*\*(.*?)\*\*"/g, '**"$1"**')  // " **문구** " -> ** "문구" **
-  .replace(/'\*\*(.*?)\*\*'/g, "**'$1'**"); // ' **문구** ' -> ** '문구' **
+        // 📌 [전처리 보정] 따옴표(일반/스마트 따옴표) 안쪽의 마크다운 강조(**) 보정
+        let cleanedBody = body
+          .replace(/"\*\*(.*?)\*\*"/g, '**"$1"**')
+          .replace(/'\*\*(.*?)\*\*'/g, "**'$1'**")
+          .replace(/“\*\*(.*?)\*\*”/g, '**“$1”**')
+          .replace(/‘\*\*(.*?)\*\*’/g, "**‘$1’**");
 
-        // 1. Marked v4+ 최신 API 호환 처리
+        // 1. Marked v4+ 최신 API 호환 처리 (보정된 cleanedBody 전달)
         let htmlBody = "";
         if (typeof marked.parse === "function") {
-          htmlBody = marked.parse(body);
+          htmlBody = marked.parse(cleanedBody);
         } else if (typeof marked === "function") {
-          htmlBody = marked(body);
+          htmlBody = marked(cleanedBody);
         } else {
-          htmlBody = body;
+          htmlBody = cleanedBody;
         }
 
         // 2. 동적 SEO 메타 태그 및 탭 제목 업데이트
