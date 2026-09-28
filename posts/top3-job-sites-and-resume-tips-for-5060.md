@@ -1,5 +1,6 @@
 ---
 title: "[시니어 재취업 심화] 5060 맞춤 주요 구인구직 사이트 TOP 3 & 서류 합격 이력서 양식 작성법"
+slug: "top3-job-sites-and-resume-tips-for-5060"
 category: 교육/자격증
 is_pillar: false
 date: 2026-09-25
