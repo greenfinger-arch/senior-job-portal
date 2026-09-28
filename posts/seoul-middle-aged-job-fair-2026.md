@@ -1,5 +1,6 @@
 ---
 title: '"70여 개 기업·중장년 3천 명 만난다: 2026 서울시 중장년 일자리박람회 개최"'
+slug: "seoul-middle-aged-job-fair-2026"
 category: 시니어 재취업
 is_pillar: false
 date: 2026-09-28
