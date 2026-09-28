@@ -1,6 +1,7 @@
 ---
 title: "2026년 5060 재취업 성공 전략: 요즘 기업이 진짜 원하는 중장년 인재상"
 category: 시니어 재취업
+slug: "5060-reemployment-strategy-2026"
 date: 2026-09-23
 thumbnail: /images/uploads/no-capital-rental-marketing-side-hustle.jpg
 excerpt: 단순 경력 연차보다는 '실무 디지털 역량'과 '유연한 태도'가 재취업 성공의 핵심입니다. 2026년 변화된 시니어 채용 시장
