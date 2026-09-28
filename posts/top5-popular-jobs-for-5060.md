@@ -1,5 +1,6 @@
 ---
 title: 5060 재취업 인기 직종 분석 TOP 5
+slug: "top5-popular-jobs-for-5060"
 category: 시니어 재취업
 date: 2026-09-24
 thumbnail: /images/uploads/facility-manager-real-work.jpg
