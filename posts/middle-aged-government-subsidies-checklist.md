@@ -1,5 +1,6 @@
 ---
 title: 2026년 중장년 지원금 체크리스트
+slug: "middle-aged-government-subsidies-checklist"
 category: 정부 지원금
 date: 2026-09-24
 thumbnail: /images/uploads/untitled-design-2026-09-24t112345.876.jpg
