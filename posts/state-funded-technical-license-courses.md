@@ -1,5 +1,6 @@
 ---
 title: 국비 지원으로 배우는 기술 자격증 코스
+slug: "state-funded-technical-license-courses"
 category: 교육/자격증
 date: 2026-09-24
 thumbnail: /images/uploads/untitled-design-2026-09-24t111403.379.jpg
