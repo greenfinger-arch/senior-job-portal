@@ -1,2 +1,15 @@
-# 모든 개별 경로 접속 시 article.html로 포워딩
-/*    /article.html   200
+# 1. 메인 페이지 및 기본 HTML 파일들은 리디렉션 대상에서 제외 (정상 접근 허용)
+/               /index.html     200
+/index.html     /index.html     200
+/jobs.html      /jobs.html      200
+/side-hustle.html /side-hustle.html 200
+/education.html /education.html 200
+/welfare.html   /welfare.html   200
+/article.html   /article.html   200
+
+# 2. 이미지, CSS, JS 등 정적 자원은 그대로 로딩하도록 예외 처리
+/images/*       /images/:splat  200
+/style.css      /style.css      200
+
+# 3. 위 예외 페이지를 제외한 나머지 모든 영문 슬러그 요청만 article.html로 연결
+/*              /article.html   200
