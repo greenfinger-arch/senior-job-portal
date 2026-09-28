@@ -50,10 +50,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       let metadata = {};
       if (parts.length >= 3) {
-        metadata = jsyaml.load(parts[1]);
+        metadata = jsyaml.load(parts[1]) || {};
       }
 
-      const slug = file.name.replace('.md', '');
+      // 📌 [수정 핵심] 1순위: 마크다운 내부 slug 값 / 2순위: 파일명에서 날짜(YYYY-MM-DD-) 및 확장자 정제
+      let slug = metadata.slug;
+      if (!slug) {
+        slug = file.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
+      }
+
       const categoryName = metadata.category || '기타';
       
       return {
@@ -71,8 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const articles = await Promise.all(articlePromises);
 
-    // 📌 [신규 추가] 2-1. 예약 발행 필터링
-    // 설정된 date가 현재 시각보다 작거나 같은(이미 지난) 공개 기사만 남깁니다.
+    // 📌 예약 발행 필터링 (설정된 date가 현재 시각보다 작거나 같은 공개 기사만)
     const publishedArticles = articles.filter(item => item.rawDate <= now);
 
     // 날짜 기준 내림차순 정렬 (최신 글이 위로)
@@ -93,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const pillarArticle = filteredArticles.find(item => item.isPillar === true);
     const regularArticles = filteredArticles.filter(item => item !== pillarArticle);
 
-    // 5. 📌 기둥 기사 상단 렌더링 (is_pillar 기사가 있고, pillarArea 요소가 존재할 경우)
+    // 5. 📌 기둥 기사 상단 렌더링 (클린 URL 적용: /${pillarArticle.slug})
     if (pillarArticle && pillarArea) {
       pillarArea.innerHTML = `
         <article class="info-card pillar-card" style="margin-bottom: 30px; border: 2px solid #2b6cb0; background: #f8fafc;">
@@ -103,12 +107,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
           <div class="card-body">
             <h2 class="card-title" style="font-size: 1.4rem; font-weight: bold;">
-              <a href="article.html?slug=${pillarArticle.slug}">${pillarArticle.title}</a>
+              <a href="/${pillarArticle.slug}">${pillarArticle.title}</a>
             </h2>
             <p class="card-text">${pillarArticle.summary}</p>
             <div class="card-meta">
               <span>${pillarArticle.date}</span>
-              <a href="article.html?slug=${pillarArticle.slug}" class="read-more" style="font-weight: bold;">전체 가이드 읽기 &rarr;</a>
+              <a href="/${pillarArticle.slug}" class="read-more" style="font-weight: bold;">전체 가이드 읽기 &rarr;</a>
             </div>
           </div>
         </article>
@@ -117,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       pillarArea.innerHTML = ''; // 기둥 기사가 없으면 영역 비움
     }
 
-    // 6. 하단 일반 카드 목록 렌더링
+    // 6. 하단 일반 카드 목록 렌더링 (클린 URL 적용: /${article.slug})
     grid.innerHTML = regularArticles.map(article => `
       <article class="info-card">
         <div class="card-image">
@@ -126,12 +130,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
         <div class="card-body">
           <h3 class="card-title">
-            <a href="article.html?slug=${article.slug}">${article.title}</a>
+            <a href="/${article.slug}">${article.title}</a>
           </h3>
           <p class="card-text">${article.summary}</p>
           <div class="card-meta">
             <span>${article.date}</span>
-            <a href="article.html?slug=${article.slug}" class="read-more">자세히 보기 &rarr;</a>
+            <a href="/${article.slug}" class="read-more">자세히 보기 &rarr;</a>
           </div>
         </div>
       </article>

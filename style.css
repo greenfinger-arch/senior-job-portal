@@ -60,6 +60,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative; /* 모바일 메뉴 드롭다운 위치 기준점 추가 */
 }
 
 .brand-logo {
@@ -114,7 +115,7 @@ a {
 }
 
 /* ==========================================================================
-   3. 히어로 비주얼 섹션
+   3. 히어로 비주얼 섹션 및 기둥 기사(Pillar)
    ========================================================================== */
 .hero-banner {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
@@ -168,11 +169,65 @@ a {
   transform: translateY(-2px);
 }
 
+/* 📌 [추가] Pillar Content (기둥 기사) 전용 배너 스타일 */
+.pillar-container {
+  margin-bottom: 40px;
+}
+
+.pillar-card {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar-badge {
+  align-self: flex-start;
+  background: #f59e0b;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: -0.5px;
+}
+
+.pillar-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.pillar-title a {
+  color: #ffffff;
+}
+
+.pillar-title a:hover {
+  text-decoration: underline;
+}
+
+.pillar-desc {
+  font-size: 1.05rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
 /* ==========================================================================
    4. 카드 그리드 레이아웃
    ========================================================================== */
+.main-content {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
 .cards-section {
-  padding: 50px 20px;
+  padding: 30px 0;
 }
 
 .section-header {
@@ -182,9 +237,11 @@ a {
   margin-bottom: 25px;
 }
 
-.section-header h2 {
-  font-size: 1.6rem;
+.section-header h2,
+.section-subtitle {
+  font-size: 1.5rem;
   font-weight: 800;
+  margin-bottom: 20px;
 }
 
 .view-all {
@@ -252,6 +309,7 @@ a {
   font-size: 1.25rem;
   line-height: 1.4;
   margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .card-title a:hover {
@@ -280,13 +338,68 @@ a {
 }
 
 /* ==========================================================================
-   5. 푸터 & 모바일 반응형 Breakpoints
+   5. 아티클 상세 페이지 스타일 (본문 읽기 배려)
+   ========================================================================== */
+.article-detail {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-top: 20px;
+}
+
+.article-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.article-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #1e293b;
+}
+
+.article-content h2 {
+  font-size: 1.5rem;
+  margin: 35px 0 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.article-content h3 {
+  font-size: 1.25rem;
+  margin: 25px 0 10px;
+}
+
+.article-content p {
+  margin-bottom: 20px;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 0 0 20px 24px;
+}
+
+.article-content li {
+  margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   6. 푸터 & 모바일 반응형 Breakpoints
    ========================================================================== */
 .site-footer {
   background-color: #0f172a;
   color: #94a3b8;
   padding: 40px 0;
-  margin-top: 40px;
+  margin-top: 60px;
   font-size: 0.95rem;
 }
 
@@ -339,8 +452,20 @@ a {
     font-size: 1.7rem;
   }
 
+  .pillar-card {
+    padding: 24px;
+  }
+
+  .pillar-title {
+    font-size: 1.3rem;
+  }
+
   .card-grid {
     grid-template-columns: 1fr; /* 모바일에서 1열 카드로 정렬 */
+  }
+
+  .article-detail {
+    padding: 20px;
   }
 
   .footer-inner {
