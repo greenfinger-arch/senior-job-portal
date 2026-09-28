@@ -1,5 +1,6 @@
 ---
 title: 5060을 위한 현실적인 디지털 N잡 TOP 3
+slug: "top3-digital-side-hustles-for-5060"
 category: 중장년 부업/N잡
 date: 2026-09-24
 thumbnail: /images/uploads/untitled-design-2026-09-24t110606.939.jpg
