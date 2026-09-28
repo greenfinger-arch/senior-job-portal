@@ -4,10 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>시니어내일포럼 - 관리자 시스템</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- config.yml 수동 로드를 위한 CMS 설정 연결 -->
+  <link href="config.yml" type="text/yaml" rel="cms-config-url" />
 </head>
 <body>
   <!-- Decap CMS 스크립트 로드 -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // 캐시로 인한 YAMLSyntaxError 방지를 위해 설정 로딩 커스텀 처리
+    window.CMS_MANUAL_INIT = true;
+    
+    // config.yml 파일에 타임스탬프 파라미터를 붙여 강제로 최신 버전을 읽어옴
+    fetch('config.yml?v=' + new Date().getTime())
+      .then(response => response.text())
+      .then(yamlText => {
+        CMS.init({
+          config: CMS.parseYaml(yamlText)
+        });
+      })
+      .catch(err => {
+        console.error("Config 로드 실패:", err);
+      });
+  </script>
 </body>
 </html>
