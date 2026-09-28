@@ -1,5 +1,6 @@
 ---
 title: "[2026 재취업] 5060 인기 직종 ① 시설관리원: 현실 연봉, 필수 자격증, 취업 팁 총정리"
+slug: "facility-manager-guide-for-5060"
 category: 시니어 재취업
 is_pillar: true
 date: 2026-09-24
