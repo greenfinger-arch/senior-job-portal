@@ -1,5 +1,6 @@
 ---
 title: "국비지원 100% 활용해 자격증 취득하는 방법: 국민내일배움카드 발급부터 꿀팁까지"
+slug: "national-learning-card-guide"
 category: 교육/자격증
 is_pillar: false
 date: 2026-09-28
