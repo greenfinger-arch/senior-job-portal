@@ -1,1 +1,2 @@
-/article/:slug  /article.html?slug=:slug  200
+# 모든 개별 경로 접속 시 article.html로 포워딩
+/*    /article.html   200
