@@ -265,12 +265,18 @@
       breaks: true
     });
 
-    // 📌 1. URL Path (/article/슬러그) 또는 URL Query (?slug=슬러그) 추출
+    // 📌 1. 도메인 직후 슬러그 (/슬러그) 또는 URL Query (?slug=슬러그) 추출
     function getSlugFromUrl() {
       const pathSegments = window.location.pathname.split('/').filter(Boolean);
-      if (pathSegments.length >= 2 && pathSegments[0] === 'article') {
-        return pathSegments[1];
+      
+      if (pathSegments.length > 0) {
+        const firstSegment = pathSegments[0];
+        // .html로 끝나는 일반 페이지 또는 시스템 파일 예외 처리
+        if (!firstSegment.endsWith('.html') && firstSegment !== 'article.html') {
+          return firstSegment;
+        }
       }
+      
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get("slug");
     }
@@ -316,6 +322,15 @@
         }
         el.setAttribute("content", data.content);
       });
+
+      // Canonical 태그 동적 추가/업데이트
+      let canonicalEl = document.querySelector('link[rel="canonical"]');
+      if (!canonicalEl) {
+        canonicalEl = document.createElement('link');
+        canonicalEl.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalEl);
+      }
+      canonicalEl.setAttribute('href', articleUrl);
     }
 
     // 📌 4. 예상 읽기 시간 계산 함수
@@ -397,8 +412,8 @@
         htmlBody = cleanMarkdownFormatting(htmlBody);
         htmlBody = htmlBody.replace(/<img /g, `<img loading="lazy" alt="${frontmatter.title || '기사 이미지'}" `);
 
-        // 📌 7. Title 및 Meta 태그 업데이트
-        const canonicalUrl = `https://rework5060.com/article/${slug}`;
+        // 📌 7. Title 및 Meta 태그 업데이트 (새 URL 구조 반영)
+        const canonicalUrl = `https://rework5060.com/${slug}`;
         if (frontmatter.title) {
           document.title = `${frontmatter.title} - Rework5060`;
         }
@@ -426,7 +441,7 @@
           </div>
         `;
 
-        // 📌 10. 동적 JSON-LD 스키마 마크업 파싱 및 제어 (중복 방지)
+        // 📌 10. 동적 JSON-LD 스키마 마크업 파싱 및 제어 (중복 방지 & 새 URL 구조 적용)
         const jsonLdData = {
           "@context": "https://schema.org",
           "@graph": [
