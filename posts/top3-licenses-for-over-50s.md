@@ -1,5 +1,6 @@
 ---
 title: 2026년 만 50세 이상 주목! 100만 원 지원받는 신중년 자격증 TOP 3
+slug: "top3-licenses-for-over-50s"
 category: 교육/자격증
 date: 2026-09-23
 thumbnail: /images/uploads/zero-capital-rental-marketing-side-hustle.jpg
