@@ -159,12 +159,15 @@
       line-height: 1.8;
     }
 
-    /* 표(Table) 스타일 */
+    /* 표(Table) 스타일 (반응형 보완) */
     .article-body table { 
       width: 100%; 
       border-collapse: collapse; 
       margin: 32px 0; 
       border: 1px solid #cbd5e1;
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     .article-body th, .article-body td { 
@@ -206,6 +209,7 @@
       border-radius: 6px; 
       font-weight: 700;
       font-size: 15px;
+      cursor: pointer;
     }
 
     .back-btn:hover {
@@ -234,6 +238,7 @@
       </button>
       <nav class="main-nav" id="mainNav">
         <ul>
+          <li><a href="/">전체보기</a></li>
           <li><a href="/jobs.html">시니어 재취업</a></li>
           <li><a href="/side-hustle.html">중장년 부업/N잡</a></li>
           <li><a href="/education.html">교육/자격증</a></li>
@@ -249,7 +254,7 @@
     </div>
     
     <div class="back-btn-wrapper">
-      <a href="javascript:history.back()" class="back-btn">&larr; 목록으로 돌아가기</a>
+      <a id="backBtn" href="/" class="back-btn">&larr; 목록으로 돌아가기</a>
     </div>
   </main>
 
@@ -259,6 +264,13 @@
   <script>
     const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
     const GITHUB_BRANCH = "main";
+
+    const CATEGORY_URL_MAP = {
+      "시니어 재취업": "https://rework5060.com/jobs.html",
+      "중장년 부업/N잡": "https://rework5060.com/side-hustle.html",
+      "교육/자격증": "https://rework5060.com/education.html",
+      "정부 지원금": "https://rework5060.com/welfare.html"
+    };
 
     marked.setOptions({
       gfm: true,
@@ -271,7 +283,6 @@
       
       if (pathSegments.length > 0) {
         const firstSegment = pathSegments[0];
-        // .html로 끝나는 일반 페이지 또는 시스템 파일 예외 처리
         if (!firstSegment.endsWith('.html') && firstSegment !== 'article.html') {
           return firstSegment;
         }
@@ -323,7 +334,6 @@
         el.setAttribute("content", data.content);
       });
 
-      // Canonical 태그 동적 추가/업데이트
       let canonicalEl = document.querySelector('link[rel="canonical"]');
       if (!canonicalEl) {
         canonicalEl = document.createElement('link');
@@ -404,7 +414,6 @@
           }
         }
 
-        // 정상 공개 기사만 캐시에 저장
         sessionStorage.setItem(cacheKey, text);
 
         // 📌 6. 마크다운 변환 및 이미지 최적화
@@ -412,7 +421,7 @@
         htmlBody = cleanMarkdownFormatting(htmlBody);
         htmlBody = htmlBody.replace(/<img /g, `<img loading="lazy" alt="${frontmatter.title || '기사 이미지'}" `);
 
-        // 📌 7. Title 및 Meta 태그 업데이트 (새 URL 구조 반영)
+        // 📌 7. Title 및 Meta 태그 업데이트
         const canonicalUrl = `https://rework5060.com/${slug}`;
         if (frontmatter.title) {
           document.title = `${frontmatter.title} - Rework5060`;
@@ -441,7 +450,10 @@
           </div>
         `;
 
-        // 📌 10. 동적 JSON-LD 스키마 마크업 파싱 및 제어 (중복 방지 & 새 URL 구조 적용)
+        // 📌 10. 동적 JSON-LD 스키마 마크업 (카테고리별 URL 동적 바인딩)
+        const categoryName = frontmatter.category || "카테고리";
+        const categoryUrl = CATEGORY_URL_MAP[categoryName] || "https://rework5060.com/";
+
         const jsonLdData = {
           "@context": "https://schema.org",
           "@graph": [
@@ -470,8 +482,8 @@
                 {
                   "@type": "ListItem",
                   "position": 2,
-                  "name": frontmatter.category || "카테고리",
-                  "item": "https://rework5060.com/education"
+                  "name": categoryName,
+                  "item": categoryUrl
                 },
                 {
                   "@type": "ListItem",
@@ -505,6 +517,17 @@
         progressBar.style.width = scrolled + "%";
       }
     });
+
+    // 📌 12. 뒤로가기 버튼 안전 처리
+    const backBtn = document.getElementById('backBtn');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        if (document.referrer && document.referrer.includes(window.location.host)) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+    }
 
     // 모바일 메뉴 토글
     const menuToggle = document.getElementById('menuToggle');
