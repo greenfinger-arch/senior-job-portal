@@ -1,6 +1,6 @@
 ---
 title: "[시니어 재취업 심화] 5060 맞춤 주요 구인구직 사이트 TOP 3 & 서류 합격 이력서 양식 작성법"
-slug: "top3-job-sites-and-resume-tips-for-5060"
+slug: top3-job-sites-and-resume-tips-for-5060
 category: 교육/자격증
 is_pillar: false
 date: 2026-09-25
@@ -19,7 +19,7 @@ excerpt: 인터넷 지원이 막막한 중장년을 위해 5060 전용 구인구
 ---
 
 > 💡 **시니어 재취업 종합 가이드가 필요하신가요?**  
-> 시설관리원, 경비원, 사회복지사 등 정년 없는 대표 직종의 현실 연봉과 필수 자격증 정보는 포럼의 대표 가이드인 **[[2026 재취업] 5060 인기 직종 ① 시설관리원 종합 분석](https://senior-job-portal.pages.dev/article?slug=2026-09-23-2026-%EC%9E%AC%EC%B7%A8%EC%97%85-5060-%EC%9D%B8%EA%B8%B0-%EC%A7%81%EC%A2%85-%E2%91%A0-%EC%8B%9C%EC%84%A4%EA%B4%80%EB%A6%AC%EC%9B%90-%ED%98%84%EC%8B%A4-%EC%97%B0%EB%B4%89-%ED%95%84%EC%88%98-%EC%9E%90%EA%B2%A9%EC%A6%9D-%EC%B7%A8%EC%97%85-%ED%8C%81-%EC%B4%9D%EC%A0%95%EB%A6%AC)** 기사를 먼저 확인해 보세요.
+> 시설관리원, 경비원, 사회복지사 등 정년 없는 대표 직종의 현실 연봉과 필수 자격증 정보는 포럼의 대표 가이드인 **[[2026 재취업] 5060 인기 직종 ① 시설관리원 종합 분석](/facility-manager-guide-for-5060)** 기사를 먼저 확인해 보세요.
 
 ---
 
