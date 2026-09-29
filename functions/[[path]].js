@@ -3,16 +3,18 @@ export async function onRequest(context) {
   const url = new URL(request.url);
   const pathname = url.pathname;
 
-  // 1. GET 또는 HEAD 요청이 아닌 경우 정적 자원으로 바로 넘김
+  // 1. GET 및 HEAD 요청 외에는 정적 파일 처리로 넘김
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return env.ASSETS.fetch(request);
   }
 
-  // 2. 메인 페이지(/), 시스템 경로, 정적 자원 확장자 예외 처리
+  // 2. 확장자 검사용 정규식
   const isStaticFile = /\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|json|yml|yaml|txt|xml|html)$/i.test(pathname);
 
+  // 3. 메인 페이지(/), 타겟 페이지(/article.html), 정적 자원 무한 루프 방지 예외 처리
   if (
     pathname === '/' ||
+    pathname === '/article.html' ||
     pathname.startsWith('/admin') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/images') ||
@@ -22,9 +24,8 @@ export async function onRequest(context) {
     return env.ASSETS.fetch(request);
   }
 
-  // 3. 클린 URL 경로(예: /national-support-card-guide)를 article.html로 내부 포워딩
+  // 4. 게시글 클린 URL 요청을 article.html로 포워딩 (request 객체를 엮지 않고 URL 문자열로만 요청)
   const articleUrl = new URL('/article.html', url.origin);
-
-  // 원본 Request의 Header 및 속성을 유지하여 article.html 호출
-  return env.ASSETS.fetch(new Request(articleUrl.toString(), request));
+  
+  return env.ASSETS.fetch(articleUrl.toString());
 }
