@@ -1,6 +1,6 @@
 ---
 title: "국비지원 100% 활용해 자격증 취득하는 방법: 국민내일배움카드 발급부터 꿀팁까지"
-slug: "national-learning-card-guide"
+slug: national-learning-card-guide
 category: 교육/자격증
 is_pillar: false
 date: 2026-09-28
@@ -16,7 +16,7 @@ excerpt: 자부담금 0원으로 국가기술자격증을 취득할 수 있는 �
 ---
 
 > 💡 **중장년 재취업 일자리 소식이 궁금하신가요?**  
-> 서울시에서 주관하는 5060 맞춤 채용 박람회 및 현장 면접 정보는 **[[일자리소식] 2026 서울시 중장년 일자리박람회 개최](article.html?slug=2026-09-28-seoul-middle-age-job-fair)** 기사를 먼저 확인해 보세요.
+> 서울시에서 주관하는 5060 맞춤 채용 박람회 및 현장 면접 정보는 **[[일자리소식] 2026 서울시 중장년 일자리박람회 개최](/seoul-middle-aged-job-fair-2026)** 기사를 먼저 확인해 보세요.
 
 ---
 
