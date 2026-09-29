@@ -10,28 +10,125 @@ const CATEGORY_MAP = {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // 모바일 메뉴 토글
+  // 1. 모바일 메뉴 토글
   const menuToggle = document.getElementById('menuToggle');
   const mainNav = document.getElementById('mainNav');
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
   }
 
+  // 2. 글로벌 링크 클릭 예외 처리 (SPA 라우팅 간섭 방지)
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    // 외부 링크, 메인페이지(/), 카테고리 HTML 페이지(.html), 앵커(#) 등은 브라우저 기본 이동 처리
+    if (
+      href.startsWith('http') ||
+      href.startsWith('//') ||
+      href.endsWith('.html') ||
+      href === '/' ||
+      href.startsWith('#')
+    ) {
+      return; // 기본 링크 이동 실행
+    }
+  });
+
   const grid = document.getElementById('articleGrid');
   const pillarArea = document.getElementById('pillarArea'); // 📌 기둥 기사 영역
+  const articleContainer = document.getElementById('articleContainer'); // 📌 article.html 상세 페이지 전용 영역
+
+  // ----------------------------------------------------
+  // A. 게시글 상세 페이지 (article.html) 로직 처리
+  // ----------------------------------------------------
+  if (articleContainer) {
+    const pathname = window.location.pathname;
+    const slug = pathname.replace(/^\//, '').replace(/\.html$/, '');
+
+    if (!slug || slug === 'article') {
+      articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">기사를 찾을 수 없습니다.</p>';
+      return;
+    }
+
+    try {
+      const listUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`;
+      const res = await fetch(listUrl);
+      if (!res.ok) throw new Error("포스트 목록을 불러올 수 없습니다.");
+      const files = await res.json();
+
+      const mdFiles = files.filter(f => f.name.endsWith('.md'));
+      let targetFile = null;
+      let targetMetadata = {};
+      let targetBody = '';
+
+      for (const file of mdFiles) {
+        const rawRes = await fetch(file.download_url);
+        const text = await rawRes.text();
+        const parts = text.split(/^---$/m);
+
+        let metadata = {};
+        if (parts.length >= 3) {
+          metadata = jsyaml.load(parts[1]) || {};
+        }
+
+        let fileSlug = metadata.slug || file.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
+        if (fileSlug === slug) {
+          targetFile = file;
+          targetMetadata = metadata;
+          targetBody = parts.slice(2).join('---');
+          break;
+        }
+      }
+
+      if (!targetFile) {
+        articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">존재하지 않거나 삭제된 기사입니다.</p>';
+        return;
+      }
+
+      // 페이지 제목 변경
+      document.title = `${targetMetadata.title || '기사 상세'} - Rework5060`;
+
+      // 마크다운 본문 변환 및 렌더링 (window.marked가 로드되어 있다고 가정)
+      const parsedContent = typeof marked !== 'undefined' ? marked.parse(targetBody) : targetBody;
+
+      articleContainer.innerHTML = `
+        <article class="article-detail">
+          <header class="article-header">
+            <span class="badge badge-blue">${targetMetadata.category || '기타'}</span>
+            <h1 style="margin-top: 15px;">${targetMetadata.title || ''}</h1>
+            <div style="font-size: 0.9rem; color: #888; margin-top: 10px;">
+              발행일: ${targetMetadata.date ? String(targetMetadata.date).substring(0, 10) : ''}
+            </div>
+          </header>
+          <div class="article-content" style="margin-top: 30px; line-height: 1.8;">
+            ${parsedContent}
+          </div>
+        </article>
+      `;
+    } catch (err) {
+      console.error("상세 페이지 로딩 실패:", err);
+      articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">기사를 불러오는 중 오류가 발생했습니다.</p>';
+    }
+    return;
+  }
+
+  // ----------------------------------------------------
+  // B. 카테고리 및 메인 목록 페이지 로직 처리
+  // ----------------------------------------------------
   if (!grid) return;
 
   const currentCategory = grid.dataset.category; // 예: "jobs", "side-hustle", "education", "welfare", "all"
 
   try {
-    // 1. GitHub API를 통해 posts 폴더의 모든 마크다운 파일 목록 가져오기
     const listUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`;
     const res = await fetch(listUrl);
     
     if (!res.ok) throw new Error("포스트 목록을 불러올 수 없습니다.");
     const files = await res.json();
 
-    // .md 파일만 필터링
     const mdFiles = files.filter(file => file.name.endsWith('.md'));
 
     if (mdFiles.length === 0) {
@@ -39,10 +136,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // 📌 현재 시스템 시각 추출 (예약 발행 비교용)
     const now = new Date();
 
-    // 2. 각 마크다운 파일의 Frontmatter(YAML Header) 읽어오기
     const articlePromises = mdFiles.map(async (file) => {
       const rawRes = await fetch(file.download_url);
       const text = await rawRes.text();
@@ -53,7 +148,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         metadata = jsyaml.load(parts[1]) || {};
       }
 
-      // 📌 [수정 핵심] 1순위: 마크다운 내부 slug 값 / 2순위: 파일명에서 날짜(YYYY-MM-DD-) 및 확장자 정제
       let slug = metadata.slug;
       if (!slug) {
         slug = file.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
@@ -67,22 +161,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         category: categoryName,
         categoryKey: metadata.categoryKey || CATEGORY_MAP[categoryName] || '',
         date: metadata.date ? String(metadata.date).substring(0, 10) : '',
-        rawDate: metadata.date ? new Date(metadata.date) : new Date(0), // 📌 예약 판별 및 정렬용 Date 객체
+        rawDate: metadata.date ? new Date(metadata.date) : new Date(0),
         summary: metadata.excerpt || metadata.summary || metadata.description || '',
         thumbnail: metadata.thumbnail || 'https://picsum.photos/600/380',
-        isPillar: metadata.is_pillar === true // 📌 기둥 기사 여부
+        isPillar: metadata.is_pillar === true
       };
     });
 
     const articles = await Promise.all(articlePromises);
 
-    // 📌 예약 발행 필터링 (설정된 date가 현재 시각보다 작거나 같은 공개 기사만)
+    // 예약 발행 필터링
     const publishedArticles = articles.filter(item => item.rawDate <= now);
 
-    // 날짜 기준 내림차순 정렬 (최신 글이 위로)
+    // 최신순 정렬
     publishedArticles.sort((a, b) => b.rawDate - a.rawDate);
 
-    // 3. 현재 페이지의 카테고리와 일치하는 기사만 필터링 (all이면 전체)
+    // 카테고리 필터링
     const filteredArticles = (currentCategory && currentCategory !== 'all')
       ? publishedArticles.filter(item => item.categoryKey === currentCategory || item.category === currentCategory)
       : publishedArticles;
@@ -93,11 +187,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // 4. 📌 기둥 기사(isPillar: true)와 일반 기사 분리
+    // 기둥 기사와 일반 기사 분리
     const pillarArticle = filteredArticles.find(item => item.isPillar === true);
     const regularArticles = filteredArticles.filter(item => item !== pillarArticle);
 
-    // 5. 📌 기둥 기사 상단 렌더링 (클린 URL 적용: /${pillarArticle.slug})
+    // 기둥 기사 렌더링
     if (pillarArticle && pillarArea) {
       pillarArea.innerHTML = `
         <article class="info-card pillar-card" style="margin-bottom: 30px; border: 2px solid #2b6cb0; background: #f8fafc;">
@@ -118,10 +212,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         </article>
       `;
     } else if (pillarArea) {
-      pillarArea.innerHTML = ''; // 기둥 기사가 없으면 영역 비움
+      pillarArea.innerHTML = '';
     }
 
-    // 6. 하단 일반 카드 목록 렌더링 (클린 URL 적용: /${article.slug})
+    // 일반 카드 목록 렌더링
     grid.innerHTML = regularArticles.map(article => `
       <article class="info-card">
         <div class="card-image">
