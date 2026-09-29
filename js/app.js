@@ -1,12 +1,20 @@
 const GITHUB_REPO = "greenfinger-arch/senior-job-portal";
 const GITHUB_BRANCH = "main";
 
-// 한글 카테고리를 HTML data-category 키값과 매칭하는 맵
+// 한글 카테고리명과 HTML data-category 키값 매핑
 const CATEGORY_MAP = {
   "시니어 재취업": "jobs",
   "중장년 부업/N잡": "side-hustle",
   "교육/자격증": "education",
   "정부 지원금": "welfare"
+};
+
+// 키값으로 한글 카테고리명을 찾는 역매핑
+const REVERSE_CATEGORY_MAP = {
+  "jobs": "시니어 재취업",
+  "side-hustle": "중장년 부업/N잡",
+  "education": "교육/자격증",
+  "welfare": "정부 지원금"
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -17,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
   }
 
-  // 2. 글로벌 링크 클릭 예외 처리 (SPA 라우팅 간섭 방지)
+  // 2. 글로벌 링크 클릭 예외 처리
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (!link) return;
@@ -32,97 +40,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       href === '/' ||
       href.startsWith('#')
     ) {
-      return; // 기본 브라우저 이동 실행
+      return;
     }
   });
 
   const grid = document.getElementById('articleGrid');
   const pillarArea = document.getElementById('pillarArea');
-  const articleContainer = document.getElementById('articleContainer');
 
-  // ----------------------------------------------------
-  // A. 게시글 상세 페이지 (article.html) 로직 처리
-  // ----------------------------------------------------
-  if (articleContainer) {
-    const rawPath = window.location.pathname;
-    // URL 인코딩 문자열을 한글/특수문자로 정상 디코딩
-    let slug = decodeURIComponent(rawPath.replace(/^\//, '').replace(/\.html$/, '')).trim();
-
-    if (!slug || slug === 'article') {
-      articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">기사를 찾을 수 없습니다.</p>';
-      return;
-    }
-
-    try {
-      const listUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`;
-      const res = await fetch(listUrl);
-      if (!res.ok) throw new Error("포스트 목록을 불러올 수 없습니다.");
-      const files = await res.json();
-
-      const mdFiles = files.filter(f => f.name.endsWith('.md'));
-      let targetMetadata = null;
-      let targetBody = '';
-
-      for (const file of mdFiles) {
-        const rawRes = await fetch(file.download_url);
-        const text = await rawRes.text();
-        const parts = text.split(/^---$/m);
-
-        let metadata = {};
-        if (parts.length >= 3) {
-          metadata = jsyaml.load(parts[1]) || {};
-        }
-
-        // 마크다운 지정 slug > 파일명 기반 slug (날짜 제거)
-        let fileSlug = metadata.slug || file.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
-        fileSlug = String(fileSlug).trim();
-
-        if (fileSlug === slug) {
-          targetMetadata = metadata;
-          targetBody = parts.slice(2).join('---');
-          break;
-        }
-      }
-
-      if (!targetMetadata) {
-        articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">존재하지 않거나 삭제된 기사입니다.</p>';
-        return;
-      }
-
-      // 페이지 Title 업데이트
-      document.title = `${targetMetadata.title || '기사 상세'} - Rework5060`;
-
-      // 마크다운 파싱
-      const parsedContent = typeof marked !== 'undefined' ? marked.parse(targetBody) : targetBody;
-
-      articleContainer.innerHTML = `
-        <article class="article-detail">
-          <header class="article-header">
-            <span class="badge badge-blue">${targetMetadata.category || '기타'}</span>
-            <h1 style="margin-top: 15px; font-size: 1.8rem; line-height: 1.4;">${targetMetadata.title || ''}</h1>
-            <div style="font-size: 0.9rem; color: #888; margin-top: 10px;">
-              발행일: ${targetMetadata.date ? String(targetMetadata.date).substring(0, 10) : ''}
-            </div>
-          </header>
-          ${targetMetadata.thumbnail ? `<img src="${targetMetadata.thumbnail}" alt="대표 이미지" style="width:100%; max-height:400px; object-fit:cover; margin-top:20px; border-radius:8px;">` : ''}
-          <div class="article-content" style="margin-top: 30px; line-height: 1.8;">
-            ${parsedContent}
-          </div>
-        </article>
-      `;
-    } catch (err) {
-      console.error("상세 페이지 로딩 실패:", err);
-      articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">기사를 불러오는 중 오류가 발생했습니다.</p>';
-    }
-    return;
-  }
-
-  // ----------------------------------------------------
-  // B. 카테고리 및 메인 목록 페이지 로직 처리
-  // ----------------------------------------------------
+  // 카테고리 및 메인 목록 페이지 영역이 없으면 중단 (article.html 등에서는 실행 방지)
   if (!grid) return;
 
-  const currentCategory = grid.dataset.category;
+  const currentCategoryKey = grid.dataset.category; // 예: "jobs", "side-hustle", "all"
+  const targetKoreanCategory = REVERSE_CATEGORY_MAP[currentCategoryKey] || null;
 
   try {
     const listUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`;
@@ -135,6 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (mdFiles.length === 0) {
       grid.innerHTML = '<p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">등록된 기사가 없습니다.</p>';
+      if (pillarArea) pillarArea.innerHTML = '';
       return;
     }
 
@@ -156,12 +86,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       const categoryName = metadata.category || '기타';
-      
+      const catKey = metadata.categoryKey || CATEGORY_MAP[categoryName] || '';
+
       return {
         slug: String(slug).trim(),
         title: metadata.title || slug,
         category: categoryName,
-        categoryKey: metadata.categoryKey || CATEGORY_MAP[categoryName] || '',
+        categoryKey: catKey,
         date: metadata.date ? String(metadata.date).substring(0, 10) : '',
         rawDate: metadata.date ? new Date(metadata.date) : new Date(0),
         summary: metadata.excerpt || metadata.summary || metadata.description || '',
@@ -172,15 +103,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const articles = await Promise.all(articlePromises);
 
-    // 예약 발행 필터링
+    // 예약 발행 필터링 (현재 시간 이하인 게시글만 공개)
     const publishedArticles = articles.filter(item => item.rawDate <= now);
 
     // 최신순 정렬
     publishedArticles.sort((a, b) => b.rawDate - a.rawDate);
 
-    // 카테고리 필터링
-    const filteredArticles = (currentCategory && currentCategory !== 'all')
-      ? publishedArticles.filter(item => item.categoryKey === currentCategory || item.category === currentCategory)
+    // 카테고리 필터링 (키값 비교 및 한글 카테고리명 비교 모두 지원)
+    const filteredArticles = (currentCategoryKey && currentCategoryKey !== 'all')
+      ? publishedArticles.filter(item => 
+          item.categoryKey === currentCategoryKey || 
+          item.category === targetKoreanCategory ||
+          item.category === currentCategoryKey
+        )
       : publishedArticles;
 
     if (filteredArticles.length === 0) {
@@ -189,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // 기둥 기사와 일반 기사 분리
+    // 대표 기둥 기사(Pillar)와 일반 기사 분리
     const pillarArticle = filteredArticles.find(item => item.isPillar === true);
     const regularArticles = filteredArticles.filter(item => item !== pillarArticle);
 
