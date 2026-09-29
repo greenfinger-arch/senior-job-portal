@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const href = link.getAttribute('href');
     if (!href) return;
 
-    // 외부 링크, 메인페이지(/), 카테고리 HTML 페이지(.html), 앵커(#) 등은 브라우저 기본 이동 처리
     if (
       href.startsWith('http') ||
       href.startsWith('//') ||
@@ -33,20 +32,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       href === '/' ||
       href.startsWith('#')
     ) {
-      return; // 기본 링크 이동 실행
+      return; // 기본 브라우저 이동 실행
     }
   });
 
   const grid = document.getElementById('articleGrid');
-  const pillarArea = document.getElementById('pillarArea'); // 📌 기둥 기사 영역
-  const articleContainer = document.getElementById('articleContainer'); // 📌 article.html 상세 페이지 전용 영역
+  const pillarArea = document.getElementById('pillarArea');
+  const articleContainer = document.getElementById('articleContainer');
 
   // ----------------------------------------------------
   // A. 게시글 상세 페이지 (article.html) 로직 처리
   // ----------------------------------------------------
   if (articleContainer) {
-    const pathname = window.location.pathname;
-    const slug = pathname.replace(/^\//, '').replace(/\.html$/, '');
+    const rawPath = window.location.pathname;
+    // URL 인코딩 문자열을 한글/특수문자로 정상 디코딩
+    let slug = decodeURIComponent(rawPath.replace(/^\//, '').replace(/\.html$/, '')).trim();
 
     if (!slug || slug === 'article') {
       articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">기사를 찾을 수 없습니다.</p>';
@@ -60,8 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const files = await res.json();
 
       const mdFiles = files.filter(f => f.name.endsWith('.md'));
-      let targetFile = null;
-      let targetMetadata = {};
+      let targetMetadata = null;
       let targetBody = '';
 
       for (const file of mdFiles) {
@@ -74,35 +73,38 @@ document.addEventListener("DOMContentLoaded", async () => {
           metadata = jsyaml.load(parts[1]) || {};
         }
 
+        // 마크다운 지정 slug > 파일명 기반 slug (날짜 제거)
         let fileSlug = metadata.slug || file.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
+        fileSlug = String(fileSlug).trim();
+
         if (fileSlug === slug) {
-          targetFile = file;
           targetMetadata = metadata;
           targetBody = parts.slice(2).join('---');
           break;
         }
       }
 
-      if (!targetFile) {
+      if (!targetMetadata) {
         articleContainer.innerHTML = '<p style="text-align: center; padding: 50px 0; color: #666;">존재하지 않거나 삭제된 기사입니다.</p>';
         return;
       }
 
-      // 페이지 제목 변경
+      // 페이지 Title 업데이트
       document.title = `${targetMetadata.title || '기사 상세'} - Rework5060`;
 
-      // 마크다운 본문 변환 및 렌더링 (window.marked가 로드되어 있다고 가정)
+      // 마크다운 파싱
       const parsedContent = typeof marked !== 'undefined' ? marked.parse(targetBody) : targetBody;
 
       articleContainer.innerHTML = `
         <article class="article-detail">
           <header class="article-header">
             <span class="badge badge-blue">${targetMetadata.category || '기타'}</span>
-            <h1 style="margin-top: 15px;">${targetMetadata.title || ''}</h1>
+            <h1 style="margin-top: 15px; font-size: 1.8rem; line-height: 1.4;">${targetMetadata.title || ''}</h1>
             <div style="font-size: 0.9rem; color: #888; margin-top: 10px;">
               발행일: ${targetMetadata.date ? String(targetMetadata.date).substring(0, 10) : ''}
             </div>
           </header>
+          ${targetMetadata.thumbnail ? `<img src="${targetMetadata.thumbnail}" alt="대표 이미지" style="width:100%; max-height:400px; object-fit:cover; margin-top:20px; border-radius:8px;">` : ''}
           <div class="article-content" style="margin-top: 30px; line-height: 1.8;">
             ${parsedContent}
           </div>
@@ -120,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ----------------------------------------------------
   if (!grid) return;
 
-  const currentCategory = grid.dataset.category; // 예: "jobs", "side-hustle", "education", "welfare", "all"
+  const currentCategory = grid.dataset.category;
 
   try {
     const listUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/posts?ref=${GITHUB_BRANCH}`;
@@ -156,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const categoryName = metadata.category || '기타';
       
       return {
-        slug: slug,
+        slug: String(slug).trim(),
         title: metadata.title || slug,
         category: categoryName,
         categoryKey: metadata.categoryKey || CATEGORY_MAP[categoryName] || '',
