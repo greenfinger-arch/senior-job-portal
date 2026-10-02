@@ -1,16 +1,16 @@
 ---
+categoryKey: jobs
+excerpt: 관절 무리 없이 안전하게 근력을 강화하는 의자 요가(Chair Yoga)와 시니어 스트레칭 지도자 도전법! 5060 신중년에
+  적합한 이유부터 필수 자격증, 주요 출강처, 실전 수업 구성법 및 수입 분석까지 상세히 전해드립니다.
+summary: 관절 무리 없이 안전하게 근력을 강화하는 의자 요가(Chair Yoga)와 시니어 스트레칭 지도자 도전법! 5060 신중년에
+  적합한 이유부터 필수 자격증, 주요 출강처, 실전 수업 구성법 및 수입 분석까지 상세히 전해드립니다.
 layout: post
 title: "[영역 확장 ③] 시니어 요가 및 의자 스트레칭(Chair Yoga) 전문 지도자 가이드"
 slug: senior-chair-yoga-stretching-instructor-guide
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-02
-categoryKey: jobs
-summary: 관절 무리 없이 안전하게 근력을 강화하는 의자 요가(Chair Yoga)와 시니어 스트레칭 지도자 도전법! 5060 신중년에
-  적합한 이유부터 필수 자격증, 주요 출강처, 실전 수업 구성법 및 수입 분석까지 상세히 전해드립니다.
+date: 2026-10-26
 thumbnail: /images/uploads/senior-chair-yoga-stretching-instructor-guide.jpg
-excerpt: 관절 무리 없이 안전하게 근력을 강화하는 의자 요가(Chair Yoga)와 시니어 스트레칭 지도자 도전법! 5060 신중년에
-  적합한 이유부터 필수 자격증, 주요 출강처, 실전 수업 구성법 및 수입 분석까지 상세히 전해드립니다.
 ---
 
 ## 목차
@@ -82,8 +82,8 @@ excerpt: 관절 무리 없이 안전하게 근력을 강화하는 의자 요가(
 <div class="highlight-box">
   <strong>📌 시니어 요가 자격 및 강사 등록 안내</strong><br>
   • <strong>대한요가회 / 국민체육진흥공단 체육지도자</strong>: 시니어 요가 교육과정 및 국가자격 확인<br>
-  ➔ <a href="https://www.koyoga.or.kr" target="_blank" rel="noopener noreferrer">대한요가회 공식 홈페이지 바로가기</a><br>
-  ➔ <a href="https://www.sqa.or.kr" target="_blank" rel="noopener noreferrer">국민체육진흥공단 체육지도자 사각지대 바로가기</a>
+  ➔ <a href="http://www.kyoga.or.kr" target="_blank" rel="noopener noreferrer">대한요가회 공식 홈페이지 바로가기</a><br>
+  ➔ <a href="https://sqms.kspo.or.kr/main/main.kspo" target="_blank" rel="noopener noreferrer">국민체육진흥공단 체육지도자 홈페이지 바로가기</a>
 </div>
 
 ---
