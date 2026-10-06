@@ -1,18 +1,18 @@
 ---
+categoryKey: jobs
+excerpt: 풀타임 임원 고용이 부담스러운 스타트업과 중소기업에 주 1~2일 또는 프로젝트 단위로 투입되는 베테랑 C-Level! 5060
+  임원·팀장 출신을 위한 프랙셔널 임원(Fractional Executive)과 단기 PM 창직법, 수입 구조, 매칭 플랫폼을 완벽
+  정리했습니다.
+summary: 풀타임 임원 고용이 부담스러운 스타트업과 중소기업에 주 1~2일 또는 프로젝트 단위로 투입되는 베테랑 C-Level! 5060
+  임원·팀장 출신을 위한 프랙셔널 임원(Fractional Executive)과 단기 PM 창직법, 수입 구조, 매칭 플랫폼을 완벽
+  정리했습니다.
 layout: post
 title: "[지식창직 5060 ④] 필요할 때만 투입되는 C-Level! 프랙셔널 임원(Fractional Executive) & 단기 PM 가이드"
 slug: senior-fractional-executive-pm-guide
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-06
-categoryKey: jobs
-summary: 풀타임 임원 고용이 부담스러운 스타트업과 중소기업에 주 1~2일 또는 프로젝트 단위로 투입되는 베테랑 C-Level! 5060
-  임원·팀장 출신을 위한 프랙셔널 임원(Fractional Executive)과 단기 PM 창직법, 수입 구조, 매칭 플랫폼을 완벽
-  정리했습니다.
+date: 2026-11-25
 thumbnail: /images/uploads/senior-fractional-executive-pm-guide.jpg
-excerpt: 풀타임 임원 고용이 부담스러운 스타트업과 중소기업에 주 1~2일 또는 프로젝트 단위로 투입되는 베테랑 C-Level! 5060
-  임원·팀장 출신을 위한 프랙셔널 임원(Fractional Executive)과 단기 PM 창직법, 수입 구조, 매칭 플랫폼을 완벽
-  정리했습니다.
 ---
 
 ## 목차
