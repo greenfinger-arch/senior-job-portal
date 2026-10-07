@@ -104,6 +104,21 @@ thumbnail: /images/uploads/offline-store-overcoming-bad-location-commercial-anal
 
 ---
 
+## <a id="series"></a>관련 시리즈 모아보기
+
+* **[1편] 입지 실패 및 유동인구 부진 극복**  
+  ➔ [C급 상권 권리금 호구에서 '지역 대표 맛집'으로 반전시킨 골목식당 사장님](https://rework5060.com/offline-store-overcoming-bad-location-commercial-analysis)
+* **[2편] 프랜차이즈 가맹 구조 극복**  
+  ➔ [매출은 높은데 남는 게 없다? 프랜차이즈 탈퇴 후 '독립 점포'로 자립한 50대](https://rework5060.com/franchise-to-independent-cafe-rebranding-success)
+* **[3편] 구인난 및 고정비 폭등 극복**  
+  ➔ [알바생 무단 결근에 손절, '1인 스마트 시스템'으로 고정비 반토막 낸 가게](https://rework5060.com/smart-store-cost-reduction-automation-success)
+* **[4편] 매장 노후화 및 타겟 이탈 극복**  
+  ➔ [손님 발길 끊긴 20년 된 동네 가게, 'SNS 핫플'로 탈바꿈한 60대 사장님](https://rework5060.com/old-store-rebranding-sns-hotplace-success)
+* **[5편] 상가 임대차 위기 및 영업권 수호**  
+  ➔ [쫓겨날 위기에서 '내 매장 건물' 마련까지, 젠트리피케이션을 이겨낸 집념](https://rework5060.com/commercial-lease-protection-gentrification-building-owner-success)
+
+---
+
 ## <a id="faq"></a>6. 자주 묻는 질문 (FAQ)
 
 **Q1. 권리금을 주고 들어갔는데 입지가 너무 안 좋습니다. 계약 해지나 환불이 가능한가요?**  
