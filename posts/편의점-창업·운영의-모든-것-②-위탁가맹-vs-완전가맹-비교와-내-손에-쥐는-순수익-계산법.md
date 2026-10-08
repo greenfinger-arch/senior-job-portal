@@ -7,7 +7,7 @@ title: "[편의점 창업·운영의 모든 것] ② 위탁가맹 vs 완전가�
 slug: convenience-store-contract-profit-structure
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-08
+date: 2026-12-25
 thumbnail: /images/uploads/convenience-store-contract-profit-structure.jpg
 ---
 
