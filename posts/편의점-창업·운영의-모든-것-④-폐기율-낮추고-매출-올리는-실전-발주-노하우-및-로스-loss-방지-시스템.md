@@ -1,16 +1,16 @@
 ---
+categoryKey: jobs
+excerpt: 편의점 운영의 성패를 가르는 신선식품(FF) 발주 노하우, 폐기율 관리법, 재고 로스(Loss) 방지 및 절도 예방 시스템을
+  상세히 정리해 드립니다.
+summary: 편의점 운영의 성패를 가르는 신선식품(FF) 발주 노하우, 폐기율 관리법, 재고 로스(Loss) 방지 및 절도 예방 시스템을
+  상세히 정리해 드립니다.
 layout: post
 title: "[편의점 창업·운영의 모든 것] ④ 폐기율 낮추고 매출 올리는 실전 발주 노하우 및 로스(Loss) 방지 시스템"
 slug: convenience-store-inventory-loss-management
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-08
-categoryKey: jobs
-summary: 편의점 운영의 성패를 가르는 신선식품(FF) 발주 노하우, 폐기율 관리법, 재고 로스(Loss) 방지 및 절도 예방 시스템을
-  상세히 정리해 드립니다.
-thumbnail: https://rework5060.com/images/uploads/convenience-store-inventory-loss-management.jpg
-excerpt: 편의점 운영의 성패를 가르는 신선식품(FF) 발주 노하우, 폐기율 관리법, 재고 로스(Loss) 방지 및 절도 예방 시스템을
-  상세히 정리해 드립니다.
+date: 2026-12-27
+thumbnail: /images/uploads/convenience-store-inventory-loss-management.jpg
 ---
 
 ## 목차
