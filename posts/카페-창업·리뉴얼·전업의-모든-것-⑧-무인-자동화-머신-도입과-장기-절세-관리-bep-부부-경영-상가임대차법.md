@@ -1,16 +1,16 @@
 ---
+categoryKey: business
+excerpt: 무인 커피 머신 및 키오스크 도입 시 손익분기점(BEP) 분석, 부부 경영 역할 분담과 건강 관리, 공동사업자 종합소득세 절세
+  및 상가건물 임대차보호법 활용법을 완벽 정리합니다.
+summary: 무인 커피 머신 및 키오스크 도입 시 손익분기점(BEP) 분석, 부부 경영 역할 분담과 건강 관리, 공동사업자 종합소득세 절세
+  및 상가건물 임대차보호법 활용법을 완벽 정리합니다.
 layout: post
 title: "[카페 창업·리뉴얼·전업의 모든 것] ⑧ 무인 자동화 머신 도입과 장기 절세 관리: BEP, 부부 경영, 상가임대차법"
 slug: cafe-unmanned-automation-tax-savings
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-12
-categoryKey: business
-summary: 무인 커피 머신 및 키오스크 도입 시 손익분기점(BEP) 분석, 부부 경영 역할 분담과 건강 관리, 공동사업자 종합소득세 절세
-  및 상가건물 임대차보호법 활용법을 완벽 정리합니다.
+date: 2027-01-15
 thumbnail: /images/uploads/cafe-unmanned-automation-tax-savings.jpg
-excerpt: 무인 커피 머신 및 키오스크 도입 시 손익분기점(BEP) 분석, 부부 경영 역할 분담과 건강 관리, 공동사업자 종합소득세 절세
-  및 상가건물 임대차보호법 활용법을 완벽 정리합니다.
 ---
 
 ## 목차
