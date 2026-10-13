@@ -1,16 +1,16 @@
 ---
+categoryKey: online-business
+excerpt: 전자책 단품 판매를 넘어 1:1 줌(Zoom) 코칭과 VOD 강의로 상품을 확장하는 노하우, VOD·실시간 세미나 파이프라인
+  구축 및 5060 맞춤형 커리큘럼 설계법을 완벽 정리합니다.
+summary: 전자책 단품 판매를 넘어 1:1 줌(Zoom) 코칭과 VOD 강의로 상품을 확장하는 노하우, VOD·실시간 세미나 파이프라인
+  구축 및 5060 맞춤형 커리큘럼 설계법을 완벽 정리합니다.
 layout: post
 title: "[5060 지식창업] ⑤ 전자책을 넘어 1:1 줌(Zoom) 코칭 & VOD 온라인 강의 제작"
 slug: expanded-coaching-vod-guide
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-13
-categoryKey: online-business
-summary: 전자책 단품 판매를 넘어 1:1 줌(Zoom) 코칭과 VOD 강의로 상품을 확장하는 노하우, VOD·실시간 세미나 파이프라인
-  구축 및 5060 맞춤형 커리큘럼 설계법을 완벽 정리합니다.
+date: 2027-01-27
 thumbnail: /images/uploads/expanded-coaching-vod-guide.jpg
-excerpt: 전자책 단품 판매를 넘어 1:1 줌(Zoom) 코칭과 VOD 강의로 상품을 확장하는 노하우, VOD·실시간 세미나 파이프라인
-  구축 및 5060 맞춤형 커리큘럼 설계법을 완벽 정리합니다.
 ---
 
 ## 목차
@@ -98,8 +98,8 @@ excerpt: 전자책 단품 판매를 넘어 1:1 줌(Zoom) 코칭과 VOD 강의로
   ➔ [읽히는 목차 구성법, 크몽·탈잉 가이드라인, 전자책 표준 포맷](https://rework5060.com/writing-first-ebook-guide)
 * **[4편] ChatGPT로 3일 만에 전자책 초안 완성하는 프롬프트 기술**  
   ➔ [AI 자료 조사, 개요 작성, 저작권 및 상업적 이용 체크리스트](https://rework5060.com/chatgpt-ebook-writing-prompts)
-* **[5편] (현재글) 전자책을 넘어 1:1 줌(Zoom) 코칭 & VOD 온라인 강의 제작**  
-  ➔ [VOD 및 실시간 줌 파이프라인, 5060 맞춤 커리큘럼, 만족도 200% 상승법](https://rework5060.com/expanded-coaching-vod-guide)
+* **[5편] 전자책을 넘어 1:1 줌(Zoom) 코칭 & VOD 온라인 강의 제작**  
+  ➔ VOD 및 실시간 줌 파이프라인, 5060 맞춤 커리큘럼, 만족도 200% 상승법
 
 ---
 
@@ -129,8 +129,8 @@ A2. 모르는 질문이 나왔을 때 당황할 필요 없습니다. "아주 예
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "온라인 창업",
-          "item": "https://rework5060.com/online-business"
+          "name": "시니어 재취업",
+          "item": "https://rework5060.com/jobs"
         },
         {
           "@type": "ListItem",
