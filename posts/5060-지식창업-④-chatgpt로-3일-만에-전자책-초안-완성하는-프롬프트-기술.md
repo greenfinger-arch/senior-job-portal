@@ -4,7 +4,7 @@ title: "[5060 지식창업] ④ ChatGPT로 3일 만에 전자책 초안 완성�
 slug: chatgpt-ebook-writing-prompts
 category: 시니어 재취업
 is_pillar: false
-date: 2026-10-13
+date: 2027-01-26
 categoryKey: jobs
 summary: ChatGPT를 활용해 3일 만에 전자책 초안을 완성하는 3단계 프롬프트 기술, AI 생성물 및 저작권·폰트 윤리 지침과 상업적
   이용 완벽 체크리스트를 공개합니다.
