@@ -208,9 +208,14 @@
       
       if (pathSegments.length > 0) {
         const firstSegment = pathSegments[0];
-        if (!firstSegment.endsWith('.html') && firstSegment !== 'article.html') {
-          rawSlug = firstSegment;
+        
+        // 📌 카테고리 경로 및 정적 파일 요청은 기사 슬러그로 취급하지 않고 차단
+        const categoryList = ['jobs', 'jobs.html', 'side-hustle', 'side-hustle.html', 'education', 'education.html', 'welfare', 'welfare.html', 'senior-startup', 'senior-startup.html', 'index.html', 'article.html', '404.html'];
+        if (categoryList.includes(firstSegment) || firstSegment.endsWith('.html')) {
+          return ""; 
         }
+
+        rawSlug = firstSegment;
       }
       
       if (!rawSlug) {
@@ -285,8 +290,9 @@
       const targetSlug = getSlugFromUrl();
       const contentDiv = document.getElementById("articleContent");
 
+      // 📌 슬러그가 없거나 카테고리 경로인 경우 404 동작 중단 및 홈으로 안전 이동
       if (!targetSlug) {
-        contentDiv.innerHTML = "<p style='text-align:center; padding: 60px 0;'>존재하지 않는 기사입니다.</p>";
+        window.location.href = "/";
         return;
       }
 
