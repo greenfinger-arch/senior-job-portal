@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!grid) return;
 
-  const currentCategoryKey = grid.dataset.category; 
+  const currentCategoryKey = grid.dataset.category; // 예: "jobs", "side-hustle", "senior-startup", "all"
   const targetKoreanCategory = REVERSE_CATEGORY_MAP[currentCategoryKey] || null;
 
   try {
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         slug = file.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/, '');
       }
 
-      const categoryName = metadata.category || '기타';
+      const categoryName = String(metadata.category || '기타').trim();
       const catKey = metadata.categoryKey || CATEGORY_MAP[categoryName] || '';
 
       return {
@@ -106,12 +106,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const publishedArticles = articles.filter(item => item.rawDate <= now);
     publishedArticles.sort((a, b) => b.rawDate - a.rawDate);
 
+    // 📌 카테고리 필터링 정밀 교정 (키값, 한글명, 대소문자 무관 비교)
     const filteredArticles = (currentCategoryKey && currentCategoryKey !== 'all')
-      ? publishedArticles.filter(item => 
-          item.categoryKey === currentCategoryKey || 
-          item.category === targetKoreanCategory ||
-          item.category === currentCategoryKey
-        )
+      ? publishedArticles.filter(item => {
+          const itemCat = String(item.category).trim();
+          const itemKey = String(item.categoryKey).trim();
+          return (
+            itemKey === currentCategoryKey || 
+            itemCat === targetKoreanCategory ||
+            itemCat === currentCategoryKey
+          );
+        })
       : publishedArticles;
 
     if (filteredArticles.length === 0) {
