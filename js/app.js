@@ -6,7 +6,8 @@ const CATEGORY_MAP = {
   "시니어 재취업": "jobs",
   "중장년 부업/N잡": "side-hustle",
   "교육/자격증": "education",
-  "정부 지원금": "welfare"
+  "정부 지원금": "welfare",
+  "시니어 창업": "senior-startup"
 };
 
 // 키값으로 한글 카테고리명을 찾는 역매핑
@@ -14,7 +15,8 @@ const REVERSE_CATEGORY_MAP = {
   "jobs": "시니어 재취업",
   "side-hustle": "중장년 부업/N잡",
   "education": "교육/자격증",
-  "welfare": "정부 지원금"
+  "welfare": "정부 지원금",
+  "senior-startup": "시니어 창업"
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -47,10 +49,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const grid = document.getElementById('articleGrid');
   const pillarArea = document.getElementById('pillarArea');
 
-  // 카테고리 및 메인 목록 페이지 영역이 없으면 중단 (article.html 등에서는 실행 방지)
   if (!grid) return;
 
-  const currentCategoryKey = grid.dataset.category; // 예: "jobs", "side-hustle", "all"
+  const currentCategoryKey = grid.dataset.category; 
   const targetKoreanCategory = REVERSE_CATEGORY_MAP[currentCategoryKey] || null;
 
   try {
@@ -102,14 +103,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const articles = await Promise.all(articlePromises);
-
-    // 예약 발행 필터링 (현재 시간 이하인 게시글만 공개)
     const publishedArticles = articles.filter(item => item.rawDate <= now);
-
-    // 최신순 정렬
     publishedArticles.sort((a, b) => b.rawDate - a.rawDate);
 
-    // 카테고리 필터링 (키값 비교 및 한글 카테고리명 비교 모두 지원)
     const filteredArticles = (currentCategoryKey && currentCategoryKey !== 'all')
       ? publishedArticles.filter(item => 
           item.categoryKey === currentCategoryKey || 
@@ -124,11 +120,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // 대표 기둥 기사(Pillar)와 일반 기사 분리
     const pillarArticle = filteredArticles.find(item => item.isPillar === true);
     const regularArticles = filteredArticles.filter(item => item !== pillarArticle);
 
-    // 기둥 기사 렌더링
     if (pillarArticle && pillarArea) {
       pillarArea.innerHTML = `
         <article class="info-card pillar-card" style="margin-bottom: 30px; border: 2px solid #2b6cb0; background: #f8fafc;">
@@ -152,7 +146,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       pillarArea.innerHTML = '';
     }
 
-    // 일반 카드 목록 렌더링
     grid.innerHTML = regularArticles.map(article => `
       <article class="info-card">
         <div class="card-image">

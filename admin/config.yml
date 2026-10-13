@@ -36,6 +36,7 @@ collections:
           - "중장년 부업/N잡"
           - "교육/자격증"
           - "정부 지원금"
+          - "시니어 창업"
 
       - label: "📌 카테고리 기둥 기사(Pillar Content)로 고정"
         name: "is_pillar"
