@@ -82,7 +82,7 @@ a {
 }
 
 .logo-image {
-  height: 34px;          /* 헤더 높이에 맞춘 로고 표시 높이 */
+  height: 35px;          /* 헤더 높이에 맞춘 로고 표시 높이 */
   width: auto;           /* 비율 유지 */
   object-fit: contain;
 }
