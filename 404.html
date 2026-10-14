@@ -290,9 +290,10 @@
       const targetSlug = getSlugFromUrl();
       const contentDiv = document.getElementById("articleContent");
 
-      // 📌 슬러그가 없거나 카테고리 경로인 경우 404 동작 중단 및 홈으로 안전 이동
+// 📌 슬러그가 없을 때 홈으로 강제 이동시키는 코드를 제거하고, 
+      // 진짜 잘못된 접근일 때만 안내 문구를 띄우도록 수정
       if (!targetSlug) {
-        window.location.href = "/";
+        contentDiv.innerHTML = "<p style='text-align:center; padding: 60px 0;'>존재하지 않는 페이지이거나 잘못된 경로입니다.</p>";
         return;
       }
 
