@@ -75,13 +75,22 @@ a {
   position: relative; /* 모바일 메뉴 드롭다운 위치 기준점 */
 }
 
+/* 📌 [수정] 이미지 로고 전용 스타일 */
 .brand-logo {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--primary-dark);
   display: flex;
   align-items: center;
-  gap: 8px;
+}
+
+.logo-image {
+  height: 38px;          /* 헤더 높이에 맞춘 로고 표시 높이 */
+  width: auto;           /* 비율 유지 */
+  object-fit: contain;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 28px;
 }
 
 .logo-badge {
