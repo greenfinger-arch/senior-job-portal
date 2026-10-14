@@ -11,12 +11,20 @@ export async function onRequest(context) {
   // 2. 확장자가 있는 정적 파일(.html, .css, .js, .png 등)은 파일 그대로 읽기
   const hasExtension = /\.[a-zA-Z0-9]+$/.test(pathname);
 
-  // 📌 3. 메인, 카테고리 경로(클린 URL 포함), 관리자, 정적 자원은 그대로 통과시키도록 추가
-  const categories = ['/jobs', '/side-hustle', '/education', '/welfare', '/senior-startup'];
+  // 3. 카테고리 경로 목록 (확장자가 있든 없든 명시적으로 허용)
+  const categoryPaths = [
+    '/jobs', '/jobs.html',
+    '/side-hustle', '/side-hustle.html',
+    '/education', '/education.html',
+    '/welfare', '/welfare.html',
+    '/senior-startup', '/senior-startup.html'
+  ];
+
+  // 4. 메인, 카테고리, 관리자, 정적 자원은 그대로 통과
   if (
     pathname === '/' ||
     hasExtension ||
-    categories.includes(pathname) ||
+    categoryPaths.includes(pathname) ||
     pathname.startsWith('/admin') ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/images') ||
@@ -25,7 +33,7 @@ export async function onRequest(context) {
     return env.ASSETS.fetch(request);
   }
 
-  // 4. 진짜 기사 슬러그 요청 시 article.html 내용을 응답
+  // 5. 그 외의 클린 URL 요청 시 article.html 내용을 응답
   const articleUrl = new URL('/article.html', url.origin);
   return env.ASSETS.fetch(articleUrl.toString());
 }
