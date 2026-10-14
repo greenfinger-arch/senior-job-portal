@@ -8,6 +8,10 @@
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="/style.css">
 
+  <!-- 📌 파비콘 및 모바일 아이콘 추가 -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png">
+
   <style>
     body {
       font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif !important;
@@ -22,7 +26,7 @@
       top: 0;
       left: 0;
       height: 4px;
-      background: #2563eb;
+      background: #0f172a;
       width: 0%;
       z-index: 9999;
       transition: width 0.1s ease-out;
@@ -33,9 +37,9 @@
       margin: 40px auto; 
       padding: 50px 40px; 
       background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      border: 1px solid #cbd5e1;
     }
     
     .article-header { 
@@ -47,11 +51,11 @@
     .article-category { 
       display: inline-block; 
       padding: 4px 12px; 
-      border-radius: 4px; 
+      border-radius: 3px; 
       font-size: 14px; 
       font-weight: 700; 
-      color: #0f172a; 
-      background-color: #e2e8f0;
+      color: #ffffff; 
+      background-color: #0369a1;
       margin-bottom: 16px; 
     }
 
@@ -79,9 +83,9 @@
       width: 100%; 
       max-height: 460px; 
       object-fit: cover; 
-      border-radius: 8px; 
+      border-radius: 4px; 
       margin-bottom: 40px; 
-      border: 1px solid #e2e8f0;
+      border: 1px solid #cbd5e1;
     }
 
     .article-body { 
@@ -94,7 +98,7 @@
     .article-body h2 { 
       font-size: 1.55rem; 
       color: #0f172a;
-      border-left: 4px solid #2563eb; 
+      border-left: 4px solid #0f172a; 
       padding-left: 14px; 
       margin: 45px 0 20px; 
       font-weight: 700;
@@ -106,12 +110,12 @@
       color: #1e293b;
       margin: 32px 0 16px; 
       padding-bottom: 8px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid #cbd5e1;
       font-weight: 700;
     }
 
     .article-body p { margin-bottom: 22px; }
-    .article-body strong { color: #0f172a; font-weight: 700; background: linear-gradient(to top, #e0f2fe 50%, transparent 50%); }
+    .article-body strong { color: #0f172a; font-weight: 700; background: linear-gradient(to top, #e2e8f0 50%, transparent 50%); }
 
     .article-body blockquote { 
       background-color: #f8fafc; 
@@ -121,9 +125,9 @@
       border-radius: 0 6px 6px 0; 
       color: #1e293b;
       font-size: 1.08rem;
-      border-top: 1px solid #e2e8f0;
-      border-right: 1px solid #e2e8f0;
-      border-bottom: 1px solid #e2e8f0;
+      border-top: 1px solid #cbd5e1;
+      border-right: 1px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
     }
 
     .article-body table { 
@@ -137,12 +141,12 @@
     }
 
     .article-body th, .article-body td { border: 1px solid #cbd5e1; padding: 14px 16px; text-align: left; font-size: 1.02rem; }
-    .article-body th { background-color: #f1f5f9; color: #0f172a; font-weight: 700; }
+    .article-body th { background-color: #f8fafc; color: #0f172a; font-weight: 700; }
     .article-body tr:nth-child(even) { background-color: #f8fafc; }
 
-    .back-btn-wrapper { margin-top: 50px; padding-top: 25px; border-top: 1px solid #e2e8f0; }
-    .back-btn { display: inline-block; padding: 12px 24px; background: #0f172a; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 700; font-size: 15px; cursor: pointer; }
-    .back-btn:hover { background: #2563eb; }
+    .back-btn-wrapper { margin-top: 50px; padding-top: 25px; border-top: 1px solid #cbd5e1; }
+    .back-btn { display: inline-block; padding: 12px 24px; background: #0f172a; color: #ffffff; text-decoration: none; border-radius: 4px; font-weight: 700; font-size: 15px; cursor: pointer; }
+    .back-btn:hover { background: #0369a1; }
 
     @media (max-width: 768px) {
       .article-container { padding: 28px 20px; margin: 15px auto; }
@@ -156,8 +160,9 @@
 
   <header class="site-header">
     <div class="header-inner">
+      <!-- 📌 이미지 로고 적용 -->
       <a href="/" class="brand-logo">
-        <span class="logo-badge">5060</span> 시니어내일포럼
+        <img src="/images/logo.png" alt="시니어내일포럼" class="logo-image">
       </a>
       <button class="mobile-menu-toggle" id="menuToggle" aria-label="메뉴 열기">
         <span></span><span></span><span></span>
@@ -209,7 +214,6 @@
       if (pathSegments.length > 0) {
         const firstSegment = pathSegments[0];
         
-        // 📌 카테고리 경로 및 정적 파일 요청은 기사 슬러그로 취급하지 않고 차단
         const categoryList = ['jobs', 'jobs.html', 'side-hustle', 'side-hustle.html', 'education', 'education.html', 'welfare', 'welfare.html', 'senior-startup', 'senior-startup.html', 'index.html', 'article.html', '404.html'];
         if (categoryList.includes(firstSegment) || firstSegment.endsWith('.html')) {
           return ""; 
@@ -290,8 +294,6 @@
       const targetSlug = getSlugFromUrl();
       const contentDiv = document.getElementById("articleContent");
 
-// 📌 슬러그가 없을 때 홈으로 강제 이동시키는 코드를 제거하고, 
-      // 진짜 잘못된 접근일 때만 안내 문구를 띄우도록 수정
       if (!targetSlug) {
         contentDiv.innerHTML = "<p style='text-align:center; padding: 60px 0;'>존재하지 않는 페이지이거나 잘못된 경로입니다.</p>";
         return;
@@ -344,7 +346,7 @@
             });
 
             contentDiv.innerHTML = `
-              <div style="text-align: center; padding: 80px 20px; background: #f8fafc; border-radius: 8px; border: 1px dashed #cbd5e1;">
+              <div style="text-align: center; padding: 80px 20px; background: #f8fafc; border-radius: 6px; border: 1px dashed #cbd5e1;">
                 <p style="font-size: 2.5rem; margin-bottom: 10px;">⏳</p>
                 <h2 style="font-size: 1.4rem; color: #0f172a; margin-bottom: 12px; font-weight: 700;">예약 발행 예정 기사입니다</h2>
                 <p style="color: #64748b; font-size: 1rem; margin-bottom: 0;">
@@ -377,7 +379,7 @@
               <span>•</span>
               <span>시니어내일포럼 편집국</span>
               <span>•</span>
-              <span>⏱️ 읽는 시간 약 ${readingTime}분</span>
+              <span>소요 시간 약 ${readingTime}분</span>
             </div>
           </article>
           ${matchedMetadata.thumbnail ? `<img src="${matchedMetadata.thumbnail}" class="article-thumb" alt="${matchedMetadata.title || '대표 이미지'}">` : ''}
@@ -447,7 +449,7 @@
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       const progressBar = document.getElementById("progress-bar");
-      if (progressBar) {
+      if, (progressBar) {
         progressBar.style.width = scrolled + "%";
       }
     });

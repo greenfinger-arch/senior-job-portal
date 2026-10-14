@@ -7,6 +7,10 @@
   <meta name="description" content="집에서 할 수 있는 부업, AI 데이터 라벨링, N잡러 가이드.">
   <link rel="stylesheet" href="/style.css">
 
+  <!-- 📌 파비콘 및 모바일 아이콘 추가 -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,7 +49,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="brand-logo">
-        <span class="logo-badge">5060</span> 시니어내일포럼
+        <img src="/images/logo.png" alt="시니어내일포럼" class="logo-image">
       </a>
       <button class="mobile-menu-toggle" id="menuToggle" aria-label="메뉴 열기">
         <span></span><span></span><span></span>
@@ -66,19 +70,41 @@
   <main class="main-content container">
     <section class="category-header">
       <h1 class="page-title">중장년 부업/N잡</h1>
-      <p class="page-subtitle">부담 없이 시작할 수 있는 제2의 수익 모델과 소일거리 정보</p>
+      <p class="page-subtitle">디지털 전환 시대에 발맞춘 실전 수익 모델 및 N잡 가이드 아카이브</p>
     </section>
 
+    <!-- 필라 기사 영역 -->
     <div id="pillarArea" class="pillar-container"></div>
 
-    <div class="card-grid" id="articleGrid" data-category="side-hustle">
-      <p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">기사를 불러오는 중입니다...</p>
-    </div>
+    <!-- 기획 연재 시리즈 로드맵 박스 -->
+    <section class="series-roadmap-section" style="margin-bottom: 40px;">
+      <div class="series-roadmap-box">
+        <h3>[기획 연재] 2026 중장년 디지털 N잡 실전 마스터</h3>
+        <p>오프라인 경험과 디지털 도구를 결합하여 안정적인 부가 수익을 창출하는 단계별 가이드입니다.</p>
+        <ul class="series-list">
+          <li><a href="/zero-capital-rental-marketing-side-hustle">1편: 자본 없이 시작하는 무자본 렌탈 마케팅 N잡</a></li>
+          <!-- 새로운 시리즈 기사가 발행될 때마다 여기에 <li> 항목을 추가해 주세요 -->
+        </ul>
+      </div>
+    </section>
+
+    <section class="latest-articles">
+      <h2 class="section-subtitle">심층 아카이브</h2>
+      <div class="card-grid" id="articleGrid" data-category="side-hustle">
+        <p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">기사를 불러오는 중입니다...</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; 2026 시니어내일포럼. All rights reserved.</p>
+      <div class="footer-info">
+        <strong>시니어내일포럼</strong>
+        <p>5060 시니어 및 중장년층을 위한 일자리·부업 전문 안내 포털입니다.</p>
+      </div>
+      <div class="footer-copy">
+        <p>&copy; 2026 시니어내일포럼. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 

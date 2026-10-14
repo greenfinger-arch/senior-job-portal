@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const mdFiles = files.filter(file => file.name.endsWith('.md'));
 
     if (mdFiles.length === 0) {
-      grid.innerHTML = '<p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">등록된 기사가 없습니다.</p>';
+      grid.innerHTML = '<p style="grid-column: 1 / -1; color: #64748b; padding: 40px 0; text-align: center;">등록된 기사가 없습니다.</p>';
       if (pillarArea) pillarArea.innerHTML = '';
       return;
     }
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       : publishedArticles;
 
     if (filteredArticles.length === 0) {
-      grid.innerHTML = '<p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">등록된 기사가 곧 업데이트될 예정입니다.</p>';
+      grid.innerHTML = '<p style="grid-column: 1 / -1; color: #64748b; padding: 40px 0; text-align: center;">등록된 기사가 곧 업데이트될 예정입니다.</p>';
       if (pillarArea) pillarArea.innerHTML = '';
       return;
     }
@@ -130,19 +130,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (pillarArticle && pillarArea) {
       pillarArea.innerHTML = `
-        <article class="info-card pillar-card" style="margin-bottom: 30px; border: 2px solid #2b6cb0; background: #f8fafc;">
+        <article class="info-card pillar-card" style="margin-bottom: 32px; border: 1px solid var(--border-color); background: #ffffff;">
           <div class="card-image">
-            <span class="badge badge-blue" style="background-color: #2b6cb0;">📌 필독 대표 가이드</span>
+            <span class="badge" style="background-color: var(--primary);">EXPERT INSIGHT</span>
             <img src="${pillarArticle.thumbnail}" alt="${pillarArticle.title}" loading="lazy">
           </div>
           <div class="card-body">
-            <h2 class="card-title" style="font-size: 1.4rem; font-weight: bold;">
+            <h2 class="card-title" style="font-size: 1.4rem; font-weight: 800;">
               <a href="/${pillarArticle.slug}">${pillarArticle.title}</a>
             </h2>
             <p class="card-text">${pillarArticle.summary}</p>
             <div class="card-meta">
               <span>${pillarArticle.date}</span>
-              <a href="/${pillarArticle.slug}" class="read-more" style="font-weight: bold;">전체 가이드 읽기 &rarr;</a>
+              <a href="/${pillarArticle.slug}" class="read-more" style="font-weight: 700;">전체 가이드 읽기 &rarr;</a>
             </div>
           </div>
         </article>
@@ -172,6 +172,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error("CMS 데이터 로딩 실패:", err);
-    grid.innerHTML = '<p style="grid-column: 1 / -1; color: #666; padding: 40px 0; text-align: center;">기사를 불러오는 중 오류가 발생했습니다.</p>';
+    grid.innerHTML = '<p style="grid-column: 1 / -1; color: #64748b; padding: 40px 0; text-align: center;">기사를 불러오는 중 오류가 발생했습니다.</p>';
   }
 });
