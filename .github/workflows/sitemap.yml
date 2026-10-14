@@ -22,49 +22,26 @@ jobs:
           DOMAIN="https://rework5060.com"
           TODAY=$(date +%Y-%m-%d)
           
-          # sitemap.xml 헤더 작성 (네이버/구글 공용 표준)
+          # sitemap.xml 헤더 작성
           echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
           echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
           
-          # 1. 고정 페이지(홈 및 주요 카테고리) 추가
-          cat << EOF >> sitemap.xml
-            <url>
-              <loc>${DOMAIN}/</loc>
-              <lastmod>${TODAY}</lastmod>
-              <changefreq>daily</changefreq>
-              <priority>1.0</priority>
-            </url>
-            <url>
-              <loc>${DOMAIN}/jobs.html</loc>
-              <lastmod>${TODAY}</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-            <url>
-              <loc>${DOMAIN}/side-hustle.html</loc>
-              <lastmod>${TODAY}</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-            <url>
-              <loc>${DOMAIN}/education.html</loc>
-              <lastmod>${TODAY}</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-            <url>
-              <loc>${DOMAIN}/welfare.html</loc>
-              <lastmod>${TODAY}</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-            <url>
-              <loc>${DOMAIN}/senior-startup.html</loc>
-              <lastmod>${TODAY}</lastmod>
-              <changefreq>weekly</changefreq>
-              <priority>0.8</priority>
-            </url>
-          EOF
+          # 1. 고정 페이지(홈 및 주요 카테고리) 추가 (들여쓰기 없이 깔끔하게 출력)
+          pages=("" "jobs.html" "side-hustle.html" "education.html" "welfare.html" "senior-startup.html")
+          
+          for page in "${pages[@]}"; do
+            echo "<url>" >> sitemap.xml
+            if [ -z "$page" ]; then
+              echo "<loc>${DOMAIN}/</loc>" >> sitemap.xml
+              echo "<priority>1.0</priority>" >> sitemap.xml
+            else
+              echo "<loc>${DOMAIN}/${page}</loc>" >> sitemap.xml
+              echo "<priority>0.8</priority>" >> sitemap.xml
+            fi
+            echo "<lastmod>${TODAY}</lastmod>" >> sitemap.xml
+            echo "<changefreq>daily</changefreq>" >> sitemap.xml
+            echo "</url>" >> sitemap.xml
+          done
 
           # 2. posts 폴더 내 마크다운 파일들의 슬러그 및 수정일 추출
           if [ -d "posts" ]; then
@@ -84,12 +61,12 @@ jobs:
                 fi
                 
                 # sitemap에 개별 기사 URL 추가
-                echo "  <url>" >> sitemap.xml
-                echo "    <loc>${DOMAIN}/${slug}</loc>" >> sitemap.xml
-                echo "    <lastmod>${file_date}</lastmod>" >> sitemap.xml
-                echo "    <changefreq>monthly</changefreq>" >> sitemap.xml
-                echo "    <priority>0.6</priority>" >> sitemap.xml
-                echo "  </url>" >> sitemap.xml
+                echo "<url>" >> sitemap.xml
+                echo "<loc>${DOMAIN}/${slug}</loc>" >> sitemap.xml
+                echo "<lastmod>${file_date}</lastmod>" >> sitemap.xml
+                echo "<changefreq>monthly</changefreq>" >> sitemap.xml
+                echo "<priority>0.6</priority>" >> sitemap.xml
+                echo "</url>" >> sitemap.xml
               fi
             done
           fi
@@ -102,4 +79,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add sitemap.xml
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update standardized sitemap.xml" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update clean standardized sitemap.xml" && git push)
