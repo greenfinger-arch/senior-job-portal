@@ -449,7 +449,7 @@
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       const progressBar = document.getElementById("progress-bar");
-      if, (progressBar) {
+      if (progressBar) {
         progressBar.style.width = scrolled + "%";
       }
     });
