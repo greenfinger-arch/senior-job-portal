@@ -9,7 +9,7 @@ title: "[교육 창업 완벽 가이드] ① 학원 vs 교습소 vs 공부방, �
 slug: education-startup-types-comparison-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-14
+date: 2027-01-31
 thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
 ---
 
