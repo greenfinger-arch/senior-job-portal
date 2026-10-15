@@ -1,16 +1,16 @@
 ---
+categoryKey: senior-startup
+excerpt: 학령인구 감소 시대에도 소규모 맞춤형 교습소가 성장하는 이유와 5060 세대의 연륜 무기, 초기 투자 비용 분석(대형 학원 vs
+  1인 교습소), 핵심 법적 규제 및 자격 요건을 완벽 해부합니다.
+summary: 교육 창업을 고민하는 입문자를 위해 학원, 교습소, 개인과외교습자(공부방)의 개념부터 법적 정의, 최소 필요 평수, 강사 채용
+  여부, 건물 용도, 투자 비용 및 손익분기점(BEP) 구조를 완벽하게 비교 분석합니다.
 layout: post
 title: "[교육 창업 완벽 가이드] ① 학원 vs 교습소 vs 공부방, 무엇이 다른가? (형태별 법적·행정적 완벽 비교)"
 slug: education-startup-types-comparison-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-15
-categoryKey: senior-startup
-summary: 교육 창업을 고민하는 입문자를 위해 학원, 교습소, 개인과외교습자(공부방)의 개념부터 법적 정의, 최소 필요 평수, 강사 채용
-  여부, 건물 용도, 투자 비용 및 손익분기점(BEP) 구조를 완벽하게 비교 분석합니다.
+date: 2026-10-14
 thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
-excerpt: 학령인구 감소 시대에도 소규모 맞춤형 교습소가 성장하는 이유와 5060 세대의 연륜 무기, 초기 투자 비용 분석(대형 학원 vs
-  1인 교습소), 핵심 법적 규제 및 자격 요건을 완벽 해부합니다.
 ---
 
 ## 목차
