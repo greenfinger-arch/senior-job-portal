@@ -22,7 +22,7 @@ thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
 6. [전문가 한 끗 솔루션: 계약 전 반드시 거쳐야 할 행정 검증 3대 수칙](#solution)
 7. [관련 시리즈 모아보기](#series)
 8. [자주 묻는 질문 (FAQ)](#faq)
-
+<br>
 ---
 
 ## <a id="prologue"></a>1. 프롤로그: 교육 창업의 첫걸음, 법적 형태의 정확한 이해부터
@@ -82,7 +82,7 @@ thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
    * **초기 자본금**: 300만 원 ~ 1,000만 원 미만 (교재비, 책상 및 학습 도구).
    * **고정 지출**: 추가 임대료 없음 (주거지 활용).
    * **리스크**: 아파트 단지 특성상 외부 홍보나 대형 간판 설치에 제약이 있음.
-
+<br>
 ---
 
 ## <a id="checklist"></a>5. 4단계: 실전 진단: 나에게 맞는 교육 창업 형태 찾기 체크리스트
@@ -92,7 +92,7 @@ thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
 * [ ] **자본금이 5,000만 원 미만이고, 임대료 리스크를 전혀 지고 싶지 않다?** ➔ **[공부방(개인과외교습자)]** 추천
 * [ ] **내 이름의 독립된 상가 간판을 걸고, 1인 책임 지식 코칭을 하고 싶다?** ➔ **[교습소]** 추천
 * [ ] **풍부한 자본이 있고, 여러 과목의 전문 강사를 고용해 대규모로 운영하겠다?** ➔ **[학원]** 추천
-
+<br>
 ---
 
 ## <a id="solution"></a>6. 전문가 한 끗 솔루션: 계약 전 반드시 거쳐야 할 행정 검증 3대 수칙
@@ -103,7 +103,7 @@ thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
    임대차 계약서에 도장을 찍기 전, 계약하려는 건물 주소를 들고 교육지원청 담당자를 찾아가 정화구역 저촉 여부 및 시설 기준을 미리 확인하세요.
 3. **불법 과외 및 무등록 운영 처벌 조항 숙지**  
    미신고 상태로 교습 행위를 하거나 공부방에서 강사를 고용해 수업하다 적발되면 과태료 및 형사 처벌 대상이 되므로, 법적 울타리 안에서 투명하게 신고해야 합니다.
-
+<br>
 ---
 
 ## <a id="series"></a>7. 관련 시리즈 모아보기
@@ -120,7 +120,7 @@ thumbnail: /images/uploads/education-startup-types-comparison-guide.jpg
   ➔ [무인 스터디카페 운영법, Zoom 멘토링, 전자책 하이브리드 비즈니스 모델](https://rework5060.com/space-rental-and-hybrid-knowledge-business)
 * **[6편] 교육 창업자가 반드시 알아야 할 면세사업자 세무 및 법적 리스크 관리**  
   ➔ [교육용역 부가가치세 면세 혜택, 교육청 수강료 상한선, 배상책임보험 가입](https://rework5060.com/education-startup-tax-and-risk-management)
-
+<br>
 ---
 
 ## <a id="faq"></a>8. 자주 묻는 질문 (FAQ)
