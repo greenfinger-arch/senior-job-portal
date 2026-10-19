@@ -5,8 +5,7 @@ excerpt: 체육관 오픈 후 신규 회원을 끌어모으고 재등록률을 �
 summary: 체육관 오픈 후 신규 회원을 끌어모으고 재등록률을 극대화하는 마케팅·상담 노하우를 공개합니다. 오픈 전 사전
   등록(Pre-Sale) 기획, 1:1 맞춤형 상담 화법과 가격 패키지 설계, 회원 이탈 방지 자동화 시스템을 해부합니다.
 layout: post
-title: '[체육관 창업 완벽 가이드] ⑤ 회원 모집 마케팅 & 등록률을 높이는 상담·등록 시스템 구축" slug:
-  "gym-startup-marketing-guide'
+title: '[체육관 창업 완벽 가이드] ⑤ 회원 모집 마케팅 & 등록률을 높이는 상담·등록 시스템 구축"'
 slug: gym-startup-marketing-guide
 category: 시니어 창업
 is_pillar: false
@@ -58,7 +57,7 @@ thumbnail: /images/uploads/gym-startup-marketing-guide.jpg
 상담하러 온 고객에게 무작정 가격부터 알려주면 십중팔구 "생각해 보고 올게요"라며 돌아섭니다. 고객의 건강 고민을 청취하는 '진단형 상담'이 필요합니다.
 
 > #### 💡 등록률을 80%로 올리는 1:1 상담 4단계 프로세스
-> <p style="margin-bottom: 24px;"></p>
+> <div style="height: 20px;"></div>
 >
 > 1. **경청 및 불편함 진단 (Inbody / 체형 측정)**  
 >    * "어디가 가장 불편하신가요?", "과거에 운동하시면서 다치신 적이 있나요?" 질문을 통해 운동 목적(체중 감량, 관절 통증 완화, 체력 증진)을 명확히 파악.
