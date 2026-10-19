@@ -9,7 +9,7 @@ title: '[체육관 창업 완벽 가이드] ⑤ 회원 모집 마케팅 & 등록
 slug: gym-startup-marketing-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-19
+date: 2027-02-10
 thumbnail: /images/uploads/gym-startup-marketing-guide.jpg
 ---
 
