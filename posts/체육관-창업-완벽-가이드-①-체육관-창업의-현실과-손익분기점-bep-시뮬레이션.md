@@ -1,16 +1,16 @@
 ---
+categoryKey: senior-startup
+excerpt: 막연한 환상을 깨고 상가 체육관 창업의 초기 총비용과 월 고정비를 정밀 산출합니다. 손익분기점(BEP)을 돌파하기 위한 최소
+  회원 수 산정 공식과 내 자본력에 맞는 소형 PT샵 vs 중대형 복합 체육관 선택 가이드를 해부합니다.
+summary: 막연한 환상을 깨고 상가 체육관 창업의 초기 총비용과 월 고정비를 정밀 산출합니다. 손익분기점(BEP)을 돌파하기 위한 최소
+  회원 수 산정 공식과 내 자본력에 맞는 소형 PT샵 vs 중대형 복합 체육관 선택 가이드를 해부합니다.
 layout: post
 title: "[체육관 창업 완벽 가이드] ① 체육관 창업의 현실과 손익분기점(BEP) 시뮬레이션"
 slug: gym-startup-bep-simulation
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-19
-categoryKey: senior-startup
-summary: 막연한 환상을 깨고 상가 체육관 창업의 초기 총비용과 월 고정비를 정밀 산출합니다. 손익분기점(BEP)을 돌파하기 위한 최소
-  회원 수 산정 공식과 내 자본력에 맞는 소형 PT샵 vs 중대형 복합 체육관 선택 가이드를 해부합니다.
+date: 2027-02-07
 thumbnail: /images/uploads/gym-startup-bep-simulation.jpg
-excerpt: 막연한 환상을 깨고 상가 체육관 창업의 초기 총비용과 월 고정비를 정밀 산출합니다. 손익분기점(BEP)을 돌파하기 위한 최소
-  회원 수 산정 공식과 내 자본력에 맞는 소형 PT샵 vs 중대형 복합 체육관 선택 가이드를 해부합니다.
 ---
 
 ## 목차
