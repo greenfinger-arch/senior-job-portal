@@ -9,7 +9,7 @@ title: '[체육관 창업 완벽 가이드] ⑤ 회원 모집 마케팅 & 등록
 slug: gym-startup-marketing-guide
 category: 시니어 창업
 is_pillar: false
-date: 2027-02-10
+date: 2027-02-11
 thumbnail: /images/uploads/gym-startup-marketing-guide.jpg
 ---
 
@@ -173,8 +173,8 @@ A2. 방문판매 등에 관한 법률 및 체육시설 이용 표준약관에 �
       "image": [
         "https://rework5060.com/images/uploads/gym-startup-marketing-guide.jpg"
       ],
-      "datePublished": "2027-02-10T12:00:00+09:00",
-      "dateModified": "2027-02-10T12:00:00+09:00",
+      "datePublished": "2027-02-11T12:00:00+09:00",
+      "dateModified": "2027-02-11T12:00:00+09:00",
       "author": {
         "@type": "Organization",
         "name": "시니어내일포럼",
