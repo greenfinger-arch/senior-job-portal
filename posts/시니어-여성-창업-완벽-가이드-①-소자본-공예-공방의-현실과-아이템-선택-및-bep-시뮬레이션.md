@@ -1,15 +1,15 @@
 ---
+categoryKey: senior-startup
+excerpt: "[시니어 여성 창업 완벽 가이드] ① 소자본 공예 공방의 현실과 아이템 선택 및 BEP 시뮬레이션"
+summary: 5060 시니어 여성의 손재주와 감성을 살린 소자본 공예 공방 창업 가이드입니다. 체력 부담이 적은 유망 공예 아이템 분석,
+  클래스·판매·출강으로 이어지는 수익 구조의 3대 축, 5~10평 소형 스튜디오 기준 손익분기점(BEP)을 정밀 분석합니다.
 layout: post
 title: "[시니어 여성 창업 완벽 가이드] ① 소자본 공예 공방의 현실과 아이템 선택 및 BEP 시뮬레이션"
 slug: craft-studio-startup-bep-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-20
-categoryKey: senior-startup
-summary: 5060 시니어 여성의 손재주와 감성을 살린 소자본 공예 공방 창업 가이드입니다. 체력 부담이 적은 유망 공예 아이템 분석,
-  클래스·판매·출강으로 이어지는 수익 구조의 3대 축, 5~10평 소형 스튜디오 기준 손익분기점(BEP)을 정밀 분석합니다.
+date: 2027-02-19
 thumbnail: /images/uploads/craft-studio-startup-bep-guide.jpg
-excerpt: "[시니어 여성 창업 완벽 가이드] ① 소자본 공예 공방의 현실과 아이템 선택 및 BEP 시뮬레이션"
 ---
 
 ## 목차
