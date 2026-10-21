@@ -1,16 +1,16 @@
 ---
+categoryKey: senior-startup
+excerpt: 체육 자격증, 공무원 체력검정, 체대입시 전문 학원 창업 가이드입니다. 유망 체육 교육 종목 분석, 체육시설업 vs 교육청 학원
+  법적 형태 비교, 시즌별 매출 변동성 극복법 및 초기 손익분기점(BEP) 시뮬레이션을 해부합니다.
+summary: 체육 자격증, 공무원 체력검정, 체대입시 전문 학원 창업 가이드입니다. 유망 체육 교육 종목 분석, 체육시설업 vs 교육청 학원
+  법적 형태 비교, 시즌별 매출 변동성 극복법 및 초기 손익분기점(BEP) 시뮬레이션을 해부합니다.
 layout: post
 title: "[체육 학원 창업 완벽 가이드] ① 체육 교육 사업의 현실! 스포츠지도사·공무원 체력·체대입시 유망 분야 TOP 4"
 slug: sports-academy-market-and-bep-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-21
-categoryKey: senior-startup
-summary: 체육 자격증, 공무원 체력검정, 체대입시 전문 학원 창업 가이드입니다. 유망 체육 교육 종목 분석, 체육시설업 vs 교육청 학원
-  법적 형태 비교, 시즌별 매출 변동성 극복법 및 초기 손익분기점(BEP) 시뮬레이션을 해부합니다.
+date: 2027-03-03
 thumbnail: /images/uploads/sports-academy-market-and-bep-guide.jpg
-excerpt: 체육 자격증, 공무원 체력검정, 체대입시 전문 학원 창업 가이드입니다. 유망 체육 교육 종목 분석, 체육시설업 vs 교육청 학원
-  법적 형태 비교, 시즌별 매출 변동성 극복법 및 초기 손익분기점(BEP) 시뮬레이션을 해부합니다.
 ---
 
 ## 목차
