@@ -1,17 +1,17 @@
 ---
+categoryKey: senior-startup
+excerpt: 국가자격증 학원 실습실 세팅 및 국비지원 승인 가이드입니다. 시험장 규격 실습 집기 알뜰 수급 노하우, 고용노동부 HRD-Net
+  직업능력개발훈련시설 인증 및 NCS 기준, 전기 증설·환기 덕트·수도 배수 시공 절감 수칙을 해부합니다.
+summary: 국가자격증 학원 실습실 세팅 및 국비지원 승인 가이드입니다. 시험장 규격 실습 집기 알뜰 수급 노하우, 고용노동부 HRD-Net
+  직업능력개발훈련시설 인증 및 NCS 기준, 전기 증설·환기 덕트·수도 배수 시공 절감 수칙을 해부합니다.
 layout: post
 title: "[국가자격증 학원 창업 완벽 가이드] ③ 시설 세팅 & 원자재 수급: 실습 집기·장비 알뜰 구축법 & 국비지원(HRD-Net)
   시설 승인 기준"
 slug: academy-equipment-and-hrd-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-21
-categoryKey: senior-startup
-summary: 국가자격증 학원 실습실 세팅 및 국비지원 승인 가이드입니다. 시험장 규격 실습 집기 알뜰 수급 노하우, 고용노동부 HRD-Net
-  직업능력개발훈련시설 인증 및 NCS 기준, 전기 증설·환기 덕트·수도 배수 시공 절감 수칙을 해부합니다.
+date: 2027-02-27
 thumbnail: /images/uploads/academy-equipment-and-hrd-guide.jpg
-excerpt: 국가자격증 학원 실습실 세팅 및 국비지원 승인 가이드입니다. 시험장 규격 실습 집기 알뜰 수급 노하우, 고용노동부 HRD-Net
-  직업능력개발훈련시설 인증 및 NCS 기준, 전기 증설·환기 덕트·수도 배수 시공 절감 수칙을 해부합니다.
 ---
 
 ## 목차
