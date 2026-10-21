@@ -1,16 +1,16 @@
 ---
+categoryKey: senior-startup
+excerpt: 공예 공방 창업 시 공간 선택과 법적 인허가 절차를 완벽 정리합니다. 소형 상가·공유 공방·아파트 홈클래스 장단점 비교,
+  간이과세자 사업자 등록, 캔들 KC 인증 및 천연비누 화장품 제조업 허가 절차를 해부합니다.
+summary: 공예 공방 창업 시 공간 선택과 법적 인허가 절차를 완벽 정리합니다. 소형 상가·공유 공방·아파트 홈클래스 장단점 비교,
+  간이과세자 사업자 등록, 캔들 KC 인증 및 천연비누 화장품 제조업 허가 절차를 해부합니다.
 layout: post
 title: "[시니어 여성 창업 완벽 가이드] ② 상가 임대 vs 공유 공방 vs 홈클래스 비교 및 사업자 등록·행정 요건"
 slug: craft-studio-location-and-permit-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-21
-categoryKey: senior-startup
-summary: 공예 공방 창업 시 공간 선택과 법적 인허가 절차를 완벽 정리합니다. 소형 상가·공유 공방·아파트 홈클래스 장단점 비교,
-  간이과세자 사업자 등록, 캔들 KC 인증 및 천연비누 화장품 제조업 허가 절차를 해부합니다.
+date: 2027-02-20
 thumbnail: /images/uploads/craft-studio-location-and-permit-guide.jpg
-excerpt: 공예 공방 창업 시 공간 선택과 법적 인허가 절차를 완벽 정리합니다. 소형 상가·공유 공방·아파트 홈클래스 장단점 비교,
-  간이과세자 사업자 등록, 캔들 KC 인증 및 천연비누 화장품 제조업 허가 절차를 해부합니다.
 ---
 
 ## 목차
