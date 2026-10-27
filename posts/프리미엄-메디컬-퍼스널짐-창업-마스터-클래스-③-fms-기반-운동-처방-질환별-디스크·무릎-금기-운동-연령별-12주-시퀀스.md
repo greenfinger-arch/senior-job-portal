@@ -9,7 +9,7 @@ title: "[프리미엄 메디컬 퍼스널짐 창업 마스터 클래스] ③ FMS
 slug: personal-gym-master-curriculum-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-27
+date: 2027-04-12
 thumbnail: /images/uploads/personal-gym-master-curriculum-guide.jpg
 ---
 
