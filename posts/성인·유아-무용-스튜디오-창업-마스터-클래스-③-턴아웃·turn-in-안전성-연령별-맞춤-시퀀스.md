@@ -1,16 +1,16 @@
 ---
+categoryKey: senior-startup
+excerpt: 체육학 석·박사 경력의 무용 마스터가 전하는 하이엔드 무용 해부학 커리큘럼 지침서입니다. 고관절 턴아웃(Turn-out)의
+  무릎·발목 안전성 원리, 연령별 맞춤 시퀀스, 금기 동작 및 3대 메디컬 티칭 노하우를 해부합니다.
+summary: 체육학 석·박사 경력의 무용 마스터가 전하는 하이엔드 무용 해부학 커리큘럼 지침서입니다. 고관절 턴아웃(Turn-out)의
+  무릎·발목 안전성 원리, 연령별 맞춤 시퀀스, 금기 동작 및 3대 메디컬 티칭 노하우를 해부합니다.
 layout: post
 title: "[성인·유아 무용 스튜디오 창업 마스터 클래스] ③ 턴아웃·Turn-in 안전성 & 연령별 맞춤 시퀀스"
 slug: dance-studio-master-curriculum-guide
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-27
-categoryKey: senior-startup
-summary: 체육학 석·박사 경력의 무용 마스터가 전하는 하이엔드 무용 해부학 커리큘럼 지침서입니다. 고관절 턴아웃(Turn-out)의
-  무릎·발목 안전성 원리, 연령별 맞춤 시퀀스, 금기 동작 및 3대 메디컬 티칭 노하우를 해부합니다.
+date: 2027-04-05
 thumbnail: /images/uploads/dance-studio-master-curriculum-guide.jpg
-excerpt: 체육학 석·박사 경력의 무용 마스터가 전하는 하이엔드 무용 해부학 커리큘럼 지침서입니다. 고관절 턴아웃(Turn-out)의
-  무릎·발목 안전성 원리, 연령별 맞춤 시퀀스, 금기 동작 및 3대 메디컬 티칭 노하우를 해부합니다.
 ---
 
 ## 목차
