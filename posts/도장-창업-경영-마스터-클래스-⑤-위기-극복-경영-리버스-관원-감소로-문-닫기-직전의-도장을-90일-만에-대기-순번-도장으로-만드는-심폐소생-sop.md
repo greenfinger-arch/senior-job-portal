@@ -12,7 +12,7 @@ title: "[도장 창업 & 경영 마스터 클래스] ⑤ [위기 극복 & 경영
 slug: dojo-management-master-class-part5
 category: 시니어 창업
 is_pillar: false
-date: 2027-04-27
+date: 2027-04-28
 thumbnail: /images/uploads/dojo-management-master-class-part5.jpg
 ---
 
@@ -174,8 +174,8 @@ A2. 그렇지 않습니다. 관원 수가 적을수록 오히려 "저희 도장�
       "image": [
         "https://rework5060.com/images/uploads/dojo-management-master-class-part5.jpg"
       ],
-      "datePublished": "2027-04-27T12:00:00+09:00",
-      "dateModified": "2027-04-27T12:00:00+09:00",
+      "datePublished": "2027-04-28T12:00:00+09:00",
+      "dateModified": "2027-04-28T12:00:00+09:00",
       "author": {
         "@type": "Organization",
         "name": "시니어내일포럼",
