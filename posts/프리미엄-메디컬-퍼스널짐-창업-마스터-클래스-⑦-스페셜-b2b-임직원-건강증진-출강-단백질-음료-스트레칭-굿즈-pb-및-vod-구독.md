@@ -1,17 +1,17 @@
 ---
+categoryKey: senior-startup
+excerpt: 체육학 석·박사 경력의 피트니스 마스터가 전하는 하이엔드 퍼스널짐 비즈니스 확장 지침서입니다. 기업 B2B 임직원 웰니스 출강,
+  자체 브랜드(PB) 단백질 음료 및 스트레칭 굿즈 유통, 온라인 VOD 홈트 구독 모델을 해부합니다.
+summary: 체육학 석·박사 경력의 피트니스 마스터가 전하는 하이엔드 퍼스널짐 비즈니스 확장 지침서입니다. 기업 B2B 임직원 웰니스 출강,
+  자체 브랜드(PB) 단백질 음료 및 스트레칭 굿즈 유통, 온라인 VOD 홈트 구독 모델을 해부합니다.
 layout: post
 title: "[프리미엄 메디컬 퍼스널짐 창업 마스터 클래스] ⑦ (스페셜) B2B 임직원 건강증진 출강, 단백질 음료/스트레칭 굿즈 PB 및
   VOD 구독"
 slug: personal-gym-business-expansion-and-collaboration
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-27
-categoryKey: senior-startup
-summary: 체육학 석·박사 경력의 피트니스 마스터가 전하는 하이엔드 퍼스널짐 비즈니스 확장 지침서입니다. 기업 B2B 임직원 웰니스 출강,
-  자체 브랜드(PB) 단백질 음료 및 스트레칭 굿즈 유통, 온라인 VOD 홈트 구독 모델을 해부합니다.
+date: 2027-04-16
 thumbnail: /images/uploads/personal-gym-business-expansion-and-collaboration.jpg
-excerpt: 체육학 석·박사 경력의 피트니스 마스터가 전하는 하이엔드 퍼스널짐 비즈니스 확장 지침서입니다. 기업 B2B 임직원 웰니스 출강,
-  자체 브랜드(PB) 단백질 음료 및 스트레칭 굿즈 유통, 온라인 VOD 홈트 구독 모델을 해부합니다.
 ---
 
 ## 목차
