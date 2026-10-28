@@ -10,7 +10,7 @@ title: "[도장 창업 & 경영 마스터 클래스] ④ [도장 경영 리스�
 slug: dojo-management-master-class-part4
 category: 시니어 창업
 is_pillar: false
-date: 2027-04-26
+date: 2027-04-27
 thumbnail: /images/uploads/dojo-management-master-class-part4.jpg
 ---
 
