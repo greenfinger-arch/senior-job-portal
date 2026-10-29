@@ -1,17 +1,17 @@
 ---
+categoryKey: senior-startup
+excerpt: 체육학 석·박사 경력의 무도 마스터가 전하는 회원 잔존율(Retention) 극대화 지침서입니다. 회원이 도장을 떠나기 전
+  보내는 결석 신호를 사전에 감지하고, 이탈 위험군을 자동으로 분류하여 다시 수련장으로 불러들이는 3단계 출결 밀착 케어 SOP를 해부합니다.
+summary: 체육학 석·박사 경력의 무도 마스터가 전하는 회원 잔존율(Retention) 극대화 지침서입니다. 회원이 도장을 떠나기 전
+  보내는 결석 신호를 사전에 감지하고, 이탈 위험군을 자동으로 분류하여 다시 수련장으로 불러들이는 3단계 출결 밀착 케어 SOP를 해부합니다.
 layout: post
 title: '[회원 락인 마케팅 믹스 30선] ④ [이탈 징후 사전 차단] "안 오기 시작한 회원을 다시 붙잡다": 수련 결석 감지 및 자동
   출결 3-Step 케어'
 slug: member-lockin-marketing-mix-part4
 category: 시니어 창업
 is_pillar: false
-date: 2026-10-29
-categoryKey: senior-startup
-summary: 체육학 석·박사 경력의 무도 마스터가 전하는 회원 잔존율(Retention) 극대화 지침서입니다. 회원이 도장을 떠나기 전
-  보내는 결석 신호를 사전에 감지하고, 이탈 위험군을 자동으로 분류하여 다시 수련장으로 불러들이는 3단계 출결 밀착 케어 SOP를 해부합니다.
+date: 2027-05-02
 thumbnail: /images/uploads/member-lockin-marketing-mix-part4.jpg
-excerpt: 체육학 석·박사 경력의 무도 마스터가 전하는 회원 잔존율(Retention) 극대화 지침서입니다. 회원이 도장을 떠나기 전
-  보내는 결석 신호를 사전에 감지하고, 이탈 위험군을 자동으로 분류하여 다시 수련장으로 불러들이는 3단계 출결 밀착 케어 SOP를 해부합니다.
 ---
 
 ## 목차
