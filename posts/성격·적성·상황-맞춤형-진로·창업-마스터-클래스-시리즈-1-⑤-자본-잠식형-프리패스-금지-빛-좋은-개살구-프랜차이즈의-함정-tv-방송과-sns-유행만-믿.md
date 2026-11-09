@@ -12,7 +12,7 @@ title: '[성격·적성·상황 맞춤형 진로·창업 마스터 클래스] �
 slug: career-master-part5
 category: 시니어 창업
 is_pillar: false
-date: 2026-11-09
+date: 2027-09-06
 thumbnail: /images/uploads/career-master-part5.jpg
 ---
 
