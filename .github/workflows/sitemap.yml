@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 💡 핵심 수정 사항: 전체 깃 히스토리를 가져와야 각 파일별 정확한 마지막 수정일을 읽을 수 있습니다.
 
       - name: Generate Sitemap XML
         run: |
@@ -53,7 +55,7 @@ jobs:
                   slug=$(echo "$filename" | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')
                 fi
                 
-                # 파일의 Git 마지막 수정일 추출
+                # 파일의 Git 마지막 수정일 추출 (fetch-depth: 0이 설정되어야 정상 작동함)
                 file_date=$(git log -1 --format="%ai" -- "$file" | cut -d' ' -f1)
                 if [ -z "$file_date" ]; then
                   file_date="${TODAY}"
